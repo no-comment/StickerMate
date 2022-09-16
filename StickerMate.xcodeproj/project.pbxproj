@@ -11,6 +11,9 @@
 		4594ADAB28D52A3C00CD2456 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADAA28D52A3C00CD2456 /* ContentView.swift */; };
 		4594ADAD28D52A3D00CD2456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4594ADAC28D52A3D00CD2456 /* Assets.xcassets */; };
 		4594ADB028D52A3D00CD2456 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4594ADAF28D52A3D00CD2456 /* Preview Assets.xcassets */; };
+		4594ADB828D52B6200CD2456 /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 4594ADB728D52B6200CD2456 /* SlideOverCard */; };
+		4594ADBB28D5321F00CD2456 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADBA28D5321F00CD2456 /* ProfileCard.swift */; };
+		4594ADBD28D5331100CD2456 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADBC28D5331100CD2456 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,8 @@
 		4594ADAA28D52A3C00CD2456 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4594ADAC28D52A3D00CD2456 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4594ADAF28D52A3D00CD2456 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4594ADBA28D5321F00CD2456 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
+		4594ADBC28D5331100CD2456 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4594ADB828D52B6200CD2456 /* SlideOverCard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,10 +57,12 @@
 		4594ADA728D52A3C00CD2456 /* StickerMate */ = {
 			isa = PBXGroup;
 			children = (
+				4594ADB928D531EA00CD2456 /* views */,
 				4594ADA828D52A3C00CD2456 /* StickerMateApp.swift */,
 				4594ADAA28D52A3C00CD2456 /* ContentView.swift */,
 				4594ADAC28D52A3D00CD2456 /* Assets.xcassets */,
 				4594ADAE28D52A3D00CD2456 /* Preview Content */,
+				4594ADBC28D5331100CD2456 /* Extensions.swift */,
 			);
 			path = StickerMate;
 			sourceTree = "<group>";
@@ -65,6 +73,14 @@
 				4594ADAF28D52A3D00CD2456 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4594ADB928D531EA00CD2456 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				4594ADBA28D5321F00CD2456 /* ProfileCard.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +99,9 @@
 			dependencies = (
 			);
 			name = StickerMate;
+			packageProductDependencies = (
+				4594ADB728D52B6200CD2456 /* SlideOverCard */,
+			);
 			productName = StickerMate;
 			productReference = 4594ADA528D52A3C00CD2456 /* StickerMate.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +130,9 @@
 				Base,
 			);
 			mainGroup = 4594AD9C28D52A3C00CD2456;
+			packageReferences = (
+				4594ADB628D52B6200CD2456 /* XCRemoteSwiftPackageReference "SlideOverCard" */,
+			);
 			productRefGroup = 4594ADA628D52A3C00CD2456 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +161,8 @@
 			files = (
 				4594ADAB28D52A3C00CD2456 /* ContentView.swift in Sources */,
 				4594ADA928D52A3C00CD2456 /* StickerMateApp.swift in Sources */,
+				4594ADBB28D5321F00CD2456 /* ProfileCard.swift in Sources */,
+				4594ADBD28D5331100CD2456 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +363,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4594ADB628D52B6200CD2456 /* XCRemoteSwiftPackageReference "SlideOverCard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joogps/SlideOverCard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4594ADB728D52B6200CD2456 /* SlideOverCard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4594ADB628D52B6200CD2456 /* XCRemoteSwiftPackageReference "SlideOverCard" */;
+			productName = SlideOverCard;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4594AD9D28D52A3C00CD2456 /* Project object */;
 }
