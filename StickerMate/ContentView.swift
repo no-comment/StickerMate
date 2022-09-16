@@ -15,7 +15,24 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
         }
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(backgroundGradient.ignoresSafeArea())
+    }
+
+    private var backgroundGradient: some View {
+        AngularGradient(gradient: Gradient(colors: [.orange, .purple, .cyan, .orange]), center: .center)
+            .blur(radius: 50)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .mask({
+                Circle().fill(RadialGradient(
+                    gradient: Gradient(colors: [.white, .clear]),
+                    center: .center,
+                    startRadius: 1,
+                    endRadius: 300
+                ))
+            })
+            .offset(x: 100, y: -200)
+            .overlay(Material.regular)
     }
 }
 
