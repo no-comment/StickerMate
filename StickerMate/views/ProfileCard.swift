@@ -12,13 +12,14 @@ struct ProfileCard: View {
 
     var body: some View {
         VStack(spacing: 15) {
-            Circle().frame(width: 140, height: 140)
+            StickerBadge(image: Image("sticker.example.profile.2"), isEvent: false)
+                .frame(width: 140, height: 140)
                 .padding(.top, 34)
             Text("John Appleseed").font(.title2.weight(.semibold))
             Text("This short text describes who I am and what I do")
                 .foregroundColor(.secondary)
             Spacer().frame(height: 15)
-            RoundedRectangle(cornerRadius: 15).frame(height: 200)
+            MacView()
         }
         .padding(innerPadding)
         .multilineTextAlignment(.center)

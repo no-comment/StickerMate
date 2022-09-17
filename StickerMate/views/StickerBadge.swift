@@ -25,7 +25,6 @@ struct StickerBadge: View {
         image
             .resizable()
             .aspectRatio(1, contentMode: .fit)
-            .glossEffect()
     }
 }
 

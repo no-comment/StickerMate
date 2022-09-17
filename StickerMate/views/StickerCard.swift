@@ -14,7 +14,9 @@ struct StickerCard: View {
 
     var body: some View {
         VStack(spacing: 15) {
-            RoundedRectangle(cornerRadius: 30).frame(width: 140, height: 140)
+            StickerBadge(image: Image("sticker.example.event.1"), isEvent: true)
+                .frame(width: 140, height: 140)
+                .glossEffect()
                 .padding(.top, 34)
             Text("Hack Zurich 2022").font(.title2.weight(.semibold))
             Text("This short text describes the Event and what happened")
@@ -23,7 +25,10 @@ struct StickerCard: View {
             Spacer().frame(height: 100)
 
             HStack {
-                Circle().frame(width: creatorSectionHeight, height: creatorSectionHeight)
+                Image("sticker.example.profile.2")
+                    .resizable()
+                    .frame(width: creatorSectionHeight, height: creatorSectionHeight)
+                    .clipShape(Circle())
                 VStack(alignment: .leading) {
                     Text("John Appleseed").font(.title3.weight(.semibold))
                     Text("This short text describes who I am and what I do")

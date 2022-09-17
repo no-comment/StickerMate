@@ -331,7 +331,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StickerMate/Preview Content\"";
-				DEVELOPMENT_TEAM = E348R9JYR6;
+				DEVELOPMENT_TEAM = 6N32W6DEZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "StickerMate uses your camera to scan other peoples codes.";
@@ -361,7 +361,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StickerMate/Preview Content\"";
-				DEVELOPMENT_TEAM = E348R9JYR6;
+				DEVELOPMENT_TEAM = 6N32W6DEZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "StickerMate uses your camera to scan other peoples codes.";
