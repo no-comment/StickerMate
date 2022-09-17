@@ -34,8 +34,23 @@ struct StickerService {
 
     func fetchStickerById(_ userId: String) async -> Sticker? {
         let doc = store.collection("Stickers").document(userId)
+        return await getStickerFromReference(doc)
+    }
+
+    func createSticker(sticker: Sticker) throws {
+        // TODO: potential bug
+        guard let id = sticker.id else { return }
+        try store.collection("Stickers").document(id).setData(from: sticker, merge: false)
+    }
+
+    func getReference(_ sticker: Sticker) -> DocumentReference? {
+        guard let id = sticker.id else { return nil }
+        return store.collection("Stickers").document(id)
+    }
+
+    func getStickerFromReference(_ ref: DocumentReference) async -> Sticker? {
         return await withCheckedContinuation { continuation in
-            doc.getDocument(as: Sticker.self) { result in
+            ref.getDocument(as: Sticker.self) { result in
                 switch result {
                 case .success(let success):
                     continuation.resume(returning: success)

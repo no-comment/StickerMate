@@ -6,8 +6,8 @@
 //
 
 import FirebaseFirestore
-import Foundation
 import FirebaseFirestoreSwift
+import Foundation
 
 struct Event: Codable {
     @DocumentID var id: String?
@@ -22,10 +22,21 @@ struct EventService {
 
     func fetchEventForSticker(_ stickerId: String) async -> Event? {
         let doc = store.collection("Events").document(stickerId)
-        return await referenceToEvent(doc)
+        return await getEventFromReference(doc)
+    }
+
+    func createEvent(event: Event) throws {
+        // TODO: potential bug
+        guard let id = event.id else { return }
+        try store.collection("Events").document(id).setData(from: event, merge: false)
+    }
+
+    func getReference(_ event: Event) -> DocumentReference? {
+        guard let id = event.id else { return nil }
+        return store.collection("Events").document(id)
     }
     
-    func referenceToEvent(_ ref: DocumentReference) async -> Event? {
+    func getEventFromReference(_ ref: DocumentReference) async -> Event? {
         return await withCheckedContinuation { continuation in
             ref.getDocument(as: Event.self) { result in
                 switch result {
