@@ -49,20 +49,6 @@ struct MacView: View {
         
     var body: some View {
         macBook
-            .overlay {
-                ZStack {
-                    ForEach(0..<10) { i in
-                        if let sticker = stickers[safe: i] {
-                            sticker
-                                .resizable()
-                                .frame(width: size[safe: i] ?? 40, height: size[safe: i] ?? 40)
-                                .cornerRadius(8)
-                                .offset(x: offset[safe: i]?.width ?? 40 , y: offset[safe: i]?.height ?? 40)
-                                .rotationEffect(.degrees(rotation[safe: i] ?? 0))
-                        }
-                    }
-                }
-            }
     }
     
     private var macBook: some View {
@@ -78,6 +64,21 @@ struct MacView: View {
                 })
                 .aspectRatio(14.3 / 10, contentMode: .fit)
                 .background(RoundedRectangle(cornerRadius: scaleValue(16, geo: geo)).fill().shadow(color: .black, radius: scaleValue(1, geo: geo), x: 0, y: scaleValue(4.5, geo: geo)).padding(scaleValue(3, geo: geo)))
+                .overlay {
+                    ZStack {
+                        ForEach(0..<10) { i in
+                            if let sticker = stickers[safe: i] {
+                                sticker
+                                    .resizable()
+                                    .frame(width: scaleValue(size[safe: i] ?? 40, geo: geo), height: scaleValue(size[safe: i] ?? 40, geo: geo))
+                                    .cornerRadius(8)
+                                    .offset(x: scaleValue(offset[safe: i]?.width ?? 40, geo: geo)
+                                            , y: scaleValue(offset[safe: i]?.height ?? 40, geo: geo))
+                                    .rotationEffect(.degrees(rotation[safe: i] ?? 0))
+                            }
+                        }
+                    }
+                }
         }
         .aspectRatio(14.3 / 10, contentMode: .fit)
     }
