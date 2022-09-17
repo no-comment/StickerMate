@@ -80,10 +80,10 @@ struct MacView_Previews: PreviewProvider {
     static var previews: some View {
         MacView([
             Image("sticker.example.event.1"),
-            Image("sticker.example.profile.2"),
-            Image("sticker.example.profile.1"),
-            Image("sticker.example.profile.2"),
-            Image("sticker.example.event.1"),
+            Image("sticker.example.event.2"),
+            Image("sticker.example.event.3"),
+            Image("sticker.example.event.4"),
+            Image("sticker.example.event.5"),
         ])
             .padding()
     }
