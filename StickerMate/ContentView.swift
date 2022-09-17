@@ -30,7 +30,9 @@ struct ContentView: View {
         }
         .background(backgroundGradient.ignoresSafeArea())
         .pageSheet(isPresented: $showProfile) {
-            ProfileView()
+            NavigationStack {
+                ProfileView()
+            }
                 .sheetPreferences {
                     .cornerRadius(40)
                 }

@@ -80,6 +80,7 @@ struct ProfileView: View {
             .padding(.vertical, 34)
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
