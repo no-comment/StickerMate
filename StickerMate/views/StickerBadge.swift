@@ -14,11 +14,13 @@ struct StickerBadge: View {
     var body: some View {
         image
             .resizable()
+            .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
+            .border(.red)
     }
 }
 
 struct StickerBadge_Previews: PreviewProvider {
     static var previews: some View {
-        StickerBadge(image: Image("sticker.profile.example.1"), isEvent: false)
+        StickerBadge(image: Image("sticker.example.profile.1"), isEvent: false)
     }
 }
