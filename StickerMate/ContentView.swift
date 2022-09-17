@@ -36,6 +36,7 @@ struct ContentView: View {
         ScrollView {
             VStack(spacing: 30) {
                 profileSection
+                    .padding(.top)
                 MacView(stickers: stickerImages)
                 if !(collectedUsers ?? []).isEmpty {
                     collectionSection
@@ -135,23 +136,23 @@ struct ContentView: View {
     }
     
     private var profileSection: some View {
-        HStack {
+        HStack(spacing: 20) {
             Button {
                 self.showProfile.toggle()
             } label: {
                 HStack {
                     (profilePicture ?? Image(systemSymbol: .personCircle))
                         .resizable()
-                        .frame(width: 40, height: 40)
+                        .frame(width: 30, height: 30)
                         .clipShape(Circle())
                     Text(username ??? "Unknown Name")
                         .font(.headline)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .redacted(reason: username == nil ? .placeholder : [])
-                .padding()
+                .padding(12)
                 .background {
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 12)
                         .foregroundColor(.white)
                         .shadow(radius: 2)
                 }
@@ -161,11 +162,11 @@ struct ContentView: View {
                 self.scanningCode.toggle()
             } label: {
                 Image(systemSymbol: .cameraViewfinder)
-                    .font(.system(size: 40, weight: .medium))
-                    .frame(width: 40, height: 40)
-                    .padding()
+                    .font(.system(size: 34, weight: .regular))
+                    .frame(width: 30, height: 30)
+                    .padding(12)
                     .background {
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 12)
                             .foregroundColor(.white)
                             .shadow(radius: 2)
                     }

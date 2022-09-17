@@ -56,6 +56,7 @@ struct CreateEventCard: View {
             Text("New Event")
                 .font(.title2.weight(.semibold))
                 .padding(.bottom, 10)
+                .padding(.top, 50)
             
             if let imageData, let uiImage = UIImage(data: imageData) {
                 Image(uiImage: uiImage)
@@ -99,7 +100,7 @@ struct CreateEventCard: View {
         .textFieldStyle(BorderedTextField()).accentColor(.secondary)
         .scrollDismissesKeyboard(.interactively)
         .background {
-            RoundedRectangle(cornerRadius: 25)
+            RoundedRectangle(cornerRadius: 0)
                 .fill(Color(uiColor: .systemBackground))
                 .reverseMask(alignment: .top) {
                     maskContent
@@ -108,6 +109,11 @@ struct CreateEventCard: View {
                 .reverseMask(alignment: .bottom) {
                     maskContent
                         .offset(y: 4)
+                }
+                .reverseMask(alignment: .top) {
+                    Circle()
+                        .frame(width: 80, height: 80)
+                        .offset(y: -40)
                 }
                 .shadow(radius: 7)
         }
