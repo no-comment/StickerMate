@@ -7,22 +7,70 @@
 
 import SFSafeSymbols
 import SwiftUI
+import CoreImage.CIFilterBuiltins
 
 struct ProfileView: View {
+    let context = CIContext()
+    let filter = CIFilter.qrCodeGenerator()
+    
+    @State private var imageData: Data? = nil
     @State private var name = "John Appleseed"
     @State private var bio = "This short text describes who I am and what I do"
+    @State private var showingQRCode: Bool = false
+    
+    init() {
+        
+    }
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 15) {
-                Button(action: {}) {
-                    Circle().fill(.red).frame(width: 175, height: 175)
-                        .overlay(alignment: .bottom) {
-                            Text("Edit").foregroundColor(.white)
-                                .padding(.vertical, 4)
-                                .background(Color.black.opacity(0.6).frame(width: 175))
+                HStack(spacing: 30) {
+                    if !showingQRCode {
+                        ImagePicker(data: $imageData) {
+                            if let imageData, let uiImage = UIImage(data: imageData) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .frame(width: 175, height: 175)
+                                    .overlay(alignment: .bottom) {
+                                        Text("Edit").foregroundColor(.white)
+                                            .padding(.vertical, 4)
+                                            .background(Color.black.opacity(0.6).frame(width: 175))
+                                    }
+                                    .clipShape(Circle())
+                            } else {
+                                Circle()
+                                    .frame(width: 175, height: 175)
+                                    .foregroundColor(.secondary.opacity(0.1))
+                                    .overlay {
+                                        Image(systemSymbol: .photo)
+                                            .font(.system(size: 50))
+                                    }
+                            }
                         }
-                        .clipShape(Circle())
+                        .transition(.move(edge: .leading).combined(with: .opacity))
+                    }
+                    
+                    Button {
+                        withAnimation {
+                            self.showingQRCode.toggle()
+                        }
+                    } label: {
+                        Image(systemSymbol: showingQRCode ? .personFill : .qrcode)
+                            .background {
+                                Circle()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(.secondary.opacity(0.1))
+                            }
+                    }
+                    
+                    if showingQRCode {
+                        Image(uiImage: generateQRCode(from: "Hello"))
+                                .resizable()
+                                .interpolation(.none)
+                                .frame(width: 180, height: 180)
+                                .transition(.move(edge: .trailing).combined(with: .opacity))
+                    }
                 }
                 .padding(.bottom)
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -82,6 +130,21 @@ struct ProfileView: View {
             .padding(.horizontal)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .buttonStyle(.plain)
+    }
+    
+    private func generateQRCode(from string: String) -> UIImage {
+        let context = CIContext()
+        let filter = CIFilter.qrCodeGenerator()
+        filter.message = Data(string.utf8)
+        if let outputImage = filter.outputImage {
+            if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
+                print("yay")
+                return UIImage(cgImage: cgimg)
+            }
+        }
+
+        return UIImage(systemName: "xmark.circle") ?? UIImage()
     }
 }
 
@@ -97,7 +160,7 @@ struct BorderedTextField: TextFieldStyle {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ProfileView().border(.red)
+            ProfileView()
         }
     }
 }
