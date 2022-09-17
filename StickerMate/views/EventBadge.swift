@@ -27,5 +27,11 @@ struct EventBadge: View {
             let res = await stickerService.getStickerFromReference(event.sticker)
             sticker = res
         }
+        .onReceive(appModel.objectWillChange) { _ in
+            Task {
+                let res = await stickerService.getStickerFromReference(event.sticker)
+                sticker = res
+            }
+        }
     }
 }

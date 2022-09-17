@@ -9,7 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import SwiftUI
 
-struct Sticker: Codable {
+struct Sticker: Codable, Equatable {
     @DocumentID var id: String?
     let imageData: String
     let creator: DocumentReference

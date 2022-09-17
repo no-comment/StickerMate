@@ -85,6 +85,16 @@ struct StickerCard: View {
             let profile = await stickerService.getStickerFromReference(user.profileSticker)
             self.userSticker = profile
         }
+        .onReceive(appModel.objectWillChange) { _ in
+            Task {
+                guard let sticker = await  stickerService.getStickerFromReference(event.sticker) else { return }
+                self.sticker = sticker
+                guard let user = await userService.getUserFromReference(sticker.creator) else { return }
+                self.creator = user
+                let profile = await stickerService.getStickerFromReference(user.profileSticker)
+                self.userSticker = profile
+            }
+        }
     }
 }
 

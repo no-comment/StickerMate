@@ -9,7 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
-struct Event: Codable {
+struct Event: Codable, Equatable {
     @DocumentID var id: String?
     let sticker: DocumentReference
     let title: String

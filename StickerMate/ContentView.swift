@@ -94,6 +94,20 @@ struct ContentView: View {
             let sticker = await appModel.getCollectedUsers()
             self.collectedUsers = sticker
         }
+        .onReceive(appModel.objectWillChange, perform: { _ in
+            Task {
+                let user = await appModel.getCurrentUserData()
+                username = user.username
+                profilePicture = await appModel.getProfileSticker().image
+                let eventSticker = await appModel.getCollectedEvents().asyncCompactMap({ await appModel.getStickerFromEvent($0) })
+                let userSticker = await appModel.getCollectedUsers()
+                stickerImages = (eventSticker + userSticker).shuffled().compactMap({ $0.image })
+                let events = await appModel.getCollectedEvents()
+                self.collectedEvents = events
+                let sticker = await appModel.getCollectedUsers()
+                self.collectedUsers = sticker
+            }
+        })
     }
     
     private var profileSection: some View {

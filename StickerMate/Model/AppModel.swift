@@ -11,11 +11,11 @@ import Foundation
 
 @MainActor
 class AppModel: ObservableObject {
-    @Published private var currentUser: User?
-    @Published private var profileSticker: Sticker?
+    @UniquePublished var currentUser: User?
+    @UniquePublished var profileSticker: Sticker?
 
-    @Published private var collectedUsers: [Sticker]?
-    @Published private var collectedEvents: [Event]?
+    @UniquePublished var collectedUsers: [Sticker]?
+    @UniquePublished var collectedEvents: [Event]?
 
     private let userService = UserService()
     private let stickerService = StickerService()
@@ -109,7 +109,5 @@ class AppModel: ObservableObject {
             let updatedUser = User(id: current.id, username: current.username, biography: current.biography, profileSticker: current.profileSticker, events: current.events, collectedUsers: current.collectedUsers + [user.profileSticker], collectedEvents: current.collectedEvents)
             updateUser(updatedUser)
         }
-        
-        
     }
 }

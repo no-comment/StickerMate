@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		456A36BE28D645E3002720A8 /* UniquePublished.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A36BD28D645E3002720A8 /* UniquePublished.swift */; };
 		4594ADA928D52A3C00CD2456 /* StickerMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADA828D52A3C00CD2456 /* StickerMateApp.swift */; };
 		4594ADAB28D52A3C00CD2456 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADAA28D52A3C00CD2456 /* ContentView.swift */; };
 		4594ADAD28D52A3D00CD2456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4594ADAC28D52A3D00CD2456 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		456A36BD28D645E3002720A8 /* UniquePublished.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniquePublished.swift; sourceTree = "<group>"; };
 		4594ADA528D52A3C00CD2456 /* StickerMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4594ADA828D52A3C00CD2456 /* StickerMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerMateApp.swift; sourceTree = "<group>"; };
 		4594ADAA28D52A3C00CD2456 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				CBB00D0B28D5A57D00003553 /* CustomSheet.swift */,
 				CB323C1428D5ECE4000BC04C /* ImagePicker.swift */,
 				4594ADEF28D5D56E00CD2456 /* GoogleService-Info.plist */,
+				456A36BD28D645E3002720A8 /* UniquePublished.swift */,
 			);
 			path = StickerMate;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				CBB00D1528D5D1DA00003553 /* Event.swift in Sources */,
 				CB323C1528D5ECE4000BC04C /* ImagePicker.swift in Sources */,
 				4594ADC528D5832700CD2456 /* StickerCard.swift in Sources */,
+				456A36BE28D645E3002720A8 /* UniquePublished.swift in Sources */,
 				CB323C1328D5E7BB000BC04C /* CreateEventCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

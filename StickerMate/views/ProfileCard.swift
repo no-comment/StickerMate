@@ -48,6 +48,14 @@ struct ProfileCard: View {
             let userSticker = await appModel.getCollectedUsers()
             stickerImages = (eventSticker + userSticker).shuffled().compactMap({ $0.image })
         }
+        .onReceive(appModel.objectWillChange) { _ in
+            Task {
+                profileSticker = await StickerService().getStickerFromReference(user.profileSticker)?.image
+                let eventSticker = await appModel.getCollectedEvents().asyncCompactMap({ await appModel.getStickerFromEvent($0) })
+                let userSticker = await appModel.getCollectedUsers()
+                stickerImages = (eventSticker + userSticker).shuffled().compactMap({ $0.image })
+            }
+        }
     }
 }
 
