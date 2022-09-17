@@ -12,6 +12,7 @@ struct CustomSheet<Content: View>: View {
     @Binding private var binding: Bool
 
     @State private var showingOverlay = false
+    @State private var translation: CGFloat = 0
 
     init(item: Binding<Bool>, content: Content) {
         self._binding = item
@@ -35,9 +36,26 @@ struct CustomSheet<Content: View>: View {
 
             if showingOverlay {
                 content
+                    .offset(y: translation)
                     .transition(.asymmetric(insertion: .opacity.combined(with: .offset(y: 50)), removal: .opacity))
+                    .animation(.interactiveSpring(), value: translation)
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                translation = value.translation.height
+                            }
+                            .onEnded { value in
+                                if abs(value.translation.height) > 200 {
+                                    showingOverlay = false
+                                    binding = false
+                                }
+                                translation = 0
+                            }
+                    )
             }
         }
+        .animation(.interactiveSpring(), value: showingOverlay)
+        .animation(.interactiveSpring(), value: binding)
     }
 }
 
