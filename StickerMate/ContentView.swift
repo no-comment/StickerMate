@@ -11,9 +11,9 @@ import SwiftUI
 struct ContentView: View {
     @State private var showProfile = false
     @State private var scanningCode = false
-
+    
     @ObservedObject private var appModel = AppModel()
-
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
@@ -26,12 +26,10 @@ struct ContentView: View {
         }
         .background(backgroundGradient.ignoresSafeArea())
         .pageSheet(isPresented: $showProfile) {
-            NavigationStack {
-                ProfileView()
-            }
-            .sheetPreferences {
-                .cornerRadius(40)
-            }
+            ProfileView()
+                .sheetPreferences {
+                    .cornerRadius(40)
+                }
         }
         .customSheet(isPresented: $scanningCode) {
             QrCodeScanner()
@@ -40,7 +38,7 @@ struct ContentView: View {
         }
         .environmentObject(appModel)
     }
-
+    
     private var profileSection: some View {
         HStack {
             Button {
@@ -62,7 +60,7 @@ struct ContentView: View {
                         .shadow(radius: 2)
                 }
             }
-
+            
             Button {
                 self.scanningCode.toggle()
             } label: {
@@ -79,11 +77,11 @@ struct ContentView: View {
         }
         .buttonStyle(.plain)
     }
-
+    
     private var collectionSection: some View {
         VStack(alignment: .leading) {
             Text("Collected Stickers").font(.title3.weight(.semibold))
-
+            
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 20)], alignment: .center, spacing: 20) {
                 ForEach(1 ..< 7) { _ in
                     Button(action: {}) {
@@ -93,11 +91,11 @@ struct ContentView: View {
             }
         }
     }
-
+    
     private var eventsSection: some View {
         VStack(alignment: .leading) {
             Text("Attended Events").font(.title3.weight(.semibold))
-
+            
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 20)], alignment: .center, spacing: 20) {
                 ForEach(1 ..< 7) { _ in
                     Button(action: {}) {
@@ -107,7 +105,7 @@ struct ContentView: View {
             }
         }
     }
-
+    
     private var backgroundGradient: some View {
         AngularGradient(gradient: Gradient(colors: [.orange, .purple, .cyan, .orange]), center: .center)
             .blur(radius: 50)

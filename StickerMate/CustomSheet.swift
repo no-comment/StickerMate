@@ -21,16 +21,15 @@ struct CustomSheet<Content: View>: View {
 
     var body: some View {
         ZStack {
-            Color.black.opacity(binding ? 0.3 : 0)
+            Color.black.opacity(binding ? 0.4 : 0)
                 .ignoresSafeArea()
                 .onTapGesture {
                     binding = false
                     showingOverlay = false
                 }
                 .onChange(of: binding, perform: { newValue in
-                    guard newValue else { return }
                     withAnimation {
-                        showingOverlay = true
+                        showingOverlay = newValue
                     }
                 })
 

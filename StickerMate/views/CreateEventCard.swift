@@ -15,12 +15,15 @@ struct CreateEventCard: View {
     @State private var startDate: Date = Date.now
     @State private var endDate: Date = Date.now
     
+    @Binding var showSheet: Bool
+    
     var body: some View {
         VStack(spacing: 30) {
             ticket
             
             Button {
-                
+                // TODO: Create new Event
+                self.showSheet = false
             } label: {
                 Text("Create Event")
                     .frame(maxWidth: .infinity)
@@ -102,7 +105,10 @@ struct CreateEventCard: View {
 
 struct CreateEventCard_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEventCard()
-            .padding()
+        Color.red
+            .customSheet(isPresented: .constant(true), content: {
+                CreateEventCard(showSheet: .constant(true))
+                    .padding()
+            })
     }
 }

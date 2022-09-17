@@ -17,6 +17,7 @@ struct ProfileView: View {
     @State private var name = "John Appleseed"
     @State private var bio = "This short text describes who I am and what I do"
     @State private var showingQRCode: Bool = false
+    @State private var addNewEvent: Bool = false
     
     init() {
         
@@ -107,16 +108,15 @@ struct ProfileView: View {
                 Text("Your Events").font(.title3.weight(.semibold))
                 
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 20)], alignment: .center, spacing: 20) {
-                    NavigationLink {
-                        CreateEventCard()
-                            .padding()
+                    Button {
+                        self.addNewEvent.toggle()
                     } label: {
                         Image(systemSymbol: .plusSquareDashed)
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .fontWeight(.thin)
-                        
                     }
+
                     
                     ForEach(1 ..< 9) { _ in
                         Button(action: {}) {
@@ -131,6 +131,10 @@ struct ProfileView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .buttonStyle(.plain)
+        .customSheet(isPresented: $addNewEvent) {
+            CreateEventCard(showSheet: $addNewEvent)
+                .padding()
+        }
     }
     
     private func generateQRCode(from string: String) -> UIImage {
@@ -159,8 +163,6 @@ struct BorderedTextField: TextFieldStyle {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            ProfileView()
-        }
+        ProfileView()
     }
 }
