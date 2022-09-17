@@ -104,21 +104,22 @@ class AppModel: ObservableObject {
     }
     
     func collectUserStickers(_ user: User) async {
-        let current = await getCurrentUserData()
+        var current = await getCurrentUserData()
         let userStickerId = user.profileSticker.documentID
         if !current.collectedUsers.map({ $0.documentID }).contains(userStickerId) {
             // not already collected
             let updatedUser = User(id: current.id, username: current.username, biography: current.biography, profileSticker: current.profileSticker, events: current.events, collectedUsers: current.collectedUsers + [user.profileSticker], collectedEvents: current.collectedEvents)
             updateUser(updatedUser)
         }
-        
+        current = await getCurrentUserData()
+
         let eventStickers = await userService.getCurrentEventsFromUser(user)
         var newEventStickers: [Event] = []
         for eventSticker in eventStickers where !current.collectedEvents.map({ $0.documentID }).contains(eventSticker.id) {
             newEventStickers.append(eventSticker)
         }
         if !newEventStickers.isEmpty {
-            let refs = await newEventStickers.asyncCompactMap({ await eventService.getReference($0) })
+            let refs = newEventStickers.compactMap({ eventService.getReference($0) })
             let updatedUser = User(id: current.id, username: current.username, biography: current.biography, profileSticker: current.profileSticker, events: current.events, collectedUsers: current.collectedUsers, collectedEvents: current.collectedEvents + refs)
             updateUser(updatedUser)
         }

@@ -203,11 +203,27 @@ struct ProfileView: View {
     private func save() {
         Task {
             let currentUser = await appModel.getCurrentUserData()
-            let updatedUser = User(id: currentUser.id, username: name, biography: bio, profileSticker: currentUser.profileSticker, events: currentUser.events, collectedUsers: currentUser.collectedUsers, collectedEvents: currentUser.collectedEvents)
-            appModel.updateUser(updatedUser)
-            
+
             let currentProfileSticker = await appModel.getProfileSticker()
-            appModel.updateSticker(Sticker(id: currentProfileSticker.id, imageData: imageData?.base64EncodedString() ?? currentProfileSticker.imageData, creator: currentProfileSticker.creator))
+            
+            if currentProfileSticker.id == "7HoKy7VY2RdAIolxKyAL" {
+                let updatedUser = User(id: currentUser.id, username: name, biography: bio, profileSticker: currentUser.profileSticker, events: currentUser.events, collectedUsers: currentUser.collectedUsers, collectedEvents: currentUser.collectedEvents)
+                appModel.updateUser(updatedUser)
+                
+                let newId = UUID().uuidString
+                do {
+                    let newProfileSticker = Sticker(id: newId, imageData: imageData?.base64EncodedString() ?? currentProfileSticker.imageData, creator: currentProfileSticker.creator)
+                    try appModel.createSticker(newProfileSticker)
+                    guard let newProfileStickerRef = StickerService().getReference(newProfileSticker) else { return }
+                    let updatedUserImg = User(id: updatedUser.id, username: updatedUser.username, biography: updatedUser.biography, profileSticker: newProfileStickerRef, events: updatedUser.events, collectedUsers: updatedUser.collectedUsers, collectedEvents: updatedUser.collectedEvents)
+                    appModel.updateUser(updatedUserImg)
+                } catch {}
+            } else {
+                let updatedUser = User(id: currentUser.id, username: name, biography: bio, profileSticker: currentUser.profileSticker, events: currentUser.events, collectedUsers: currentUser.collectedUsers, collectedEvents: currentUser.collectedEvents)
+                appModel.updateUser(updatedUser)
+                
+                appModel.updateSticker(Sticker(id: currentProfileSticker.id, imageData: imageData?.base64EncodedString() ?? currentProfileSticker.imageData, creator: currentProfileSticker.creator))
+            }
         }
     }
     

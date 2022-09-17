@@ -34,8 +34,6 @@ struct StickerCard: View {
                     .padding(.top, 34)
             }
             Text(title ?? "Event").font(.title2.weight(.semibold))
-            Text("This short text describes the Event and what happened")
-                .foregroundColor(.secondary)
 
             Spacer()
                 .frame(height: 100)
@@ -84,6 +82,7 @@ struct StickerCard: View {
             self.creator = user
             let profile = await stickerService.getStickerFromReference(user.profileSticker)
             self.userSticker = profile
+            self.title = event.title
         }
         .onReceive(appModel.objectWillChange) { _ in
             Task {
@@ -93,6 +92,7 @@ struct StickerCard: View {
                 self.creator = user
                 let profile = await stickerService.getStickerFromReference(user.profileSticker)
                 self.userSticker = profile
+                self.title = event.title
             }
         }
     }
