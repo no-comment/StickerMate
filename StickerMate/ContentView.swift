@@ -30,6 +30,8 @@ struct ContentView: View {
     
     @State private var stickerImages: [Image] = []
     
+    @State private var scannedUser: User?
+
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
@@ -46,7 +48,7 @@ struct ContentView: View {
                         .multilineTextAlignment(.center)
                 }
             }
-            .padding(.horizontal)
+            .padding()
         }
         .background(backgroundGradient.ignoresSafeArea())
         .pageSheet(isPresented: $showProfile) {
@@ -59,9 +61,15 @@ struct ContentView: View {
             .environmentObject(appModel)
         }
         .customSheet(isPresented: $scanningCode) {
-            QrCodeScanner()
-                .padding()
-                .frame(maxHeight: .infinity, alignment: .bottom)
+            if let scannedUser {
+                ProfileCard(user: scannedUser)
+                    .padding()
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+            } else {
+                QrCodeScanner()
+                    .padding()
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+            }
         }
         .customSheet(isPresented: $showingUserSticker, content: {
             if let activeUserSticker {
@@ -76,6 +84,22 @@ struct ContentView: View {
             }
         })
         .environmentObject(appModel)
+        .onOpenURL { url in
+            print("open url \(url.absoluteString)")
+            guard url.scheme == "stickermate",
+                  let userId = url.host,
+                  !userId.isEmpty
+            else { return }
+            
+            Task(priority: .userInitiated) {
+                scannedUser = await appModel.getScannedUser(userId)
+                guard let scannedUser else { return }
+                scanningCode = true
+                Task {
+                    await appModel.collectUserStickers(scannedUser)
+                }
+            }
+        }
         .task {
             let user = await appModel.getCurrentUserData()
             username = user.username

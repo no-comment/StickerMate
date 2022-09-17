@@ -30,7 +30,7 @@ struct CreateEventCard: View {
                         let user = await appModel.getCurrentUserData()
                         let sticker = Sticker(id: UUID().uuidString, imageData: imageString, creator: UserService().getReference(user)!)
                         try appModel.createSticker(sticker)
-                        try appModel.createEvent(Event(id: UUID().uuidString, sticker: StickerService().getReference(sticker)!, title: title.trimmingCharacters(in: .whitespaces), startDate: startDate, endDate: endDate))
+                        try appModel.createEvent(Event(id: UUID().uuidString, sticker: StickerService().getReference(sticker)!, title: title.trimmingCharacters(in: .whitespaces), startDate: startDate, endDate: endDate), user: user)
                     } catch {
                         assertionFailure(error.localizedDescription)
                         self.showSheet = false
@@ -47,6 +47,7 @@ struct CreateEventCard: View {
                     .font(.headline)
             }
             .disabled(imageData == nil || title.isEmpty)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray))
         }
     }
     

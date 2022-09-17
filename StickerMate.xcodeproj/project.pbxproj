@@ -40,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		456A36BD28D645E3002720A8 /* UniquePublished.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniquePublished.swift; sourceTree = "<group>"; };
+		456A36BF28D647A3002720A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4594ADA528D52A3C00CD2456 /* StickerMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4594ADA828D52A3C00CD2456 /* StickerMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerMateApp.swift; sourceTree = "<group>"; };
 		4594ADAA28D52A3C00CD2456 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		4594ADA728D52A3C00CD2456 /* StickerMate */ = {
 			isa = PBXGroup;
 			children = (
+				456A36BF28D647A3002720A8 /* Info.plist */,
 				CBB00D0F28D5D10900003553 /* Model */,
 				4594ADB928D531EA00CD2456 /* views */,
 				4594ADA828D52A3C00CD2456 /* StickerMateApp.swift */,
@@ -397,6 +399,7 @@
 				DEVELOPMENT_TEAM = E348R9JYR6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StickerMate/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "StickerMate uses your camera to scan other peoples codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -427,6 +430,7 @@
 				DEVELOPMENT_TEAM = E348R9JYR6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StickerMate/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "StickerMate uses your camera to scan other peoples codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

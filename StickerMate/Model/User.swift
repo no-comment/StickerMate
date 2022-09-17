@@ -41,7 +41,7 @@ struct UserService {
         try store.collection("Users").document(userId).setData(from: user, merge: false)
         print("created user: \(userId)")
     }
-    
+
     func updateUser(_ user: User) throws {
         guard let userId = user.id else { return }
         try store.collection("Users").document(userId).setData(from: user, merge: true)
@@ -65,5 +65,11 @@ struct UserService {
                 }
             }
         }
+    }
+
+    func getCurrentEventsFromUser(_ user: User) async -> [Event] {
+        let eventService = EventService()
+        let events = await user.events.asyncCompactMap({ await eventService.getEventFromReference($0) })
+        return events.filter({ $0.startDate < .now && $0.endDate > .now })
     }
 }

@@ -135,7 +135,6 @@ struct ProfileView: View {
                         }
                     }
                 }
-                    
             }
             .padding(.vertical, 34)
             .frame(maxWidth: .infinity)
@@ -155,16 +154,44 @@ struct ProfileView: View {
             let user = await appModel.getCurrentUserData()
             name = user.username
             bio = user.biography
+        }
+        .task {
             let profileSticker = await appModel.getProfileSticker()
             if profileSticker.image != nil {
                 imageData = Data(base64Encoded: profileSticker.imageData, options: .ignoreUnknownCharacters)
             }
+        }
+        .task {
             let eventSticker = await appModel.getCollectedEvents().asyncCompactMap({ await appModel.getStickerFromEvent($0) })
             let userSticker = await appModel.getCollectedUsers()
             images = (eventSticker + userSticker).shuffled().compactMap({ $0.image })
+        }
+        .task {
             let usersEvents = await appModel.getEvents()
             self.myEvents = usersEvents
         }
+        .onReceive(appModel.objectWillChange, perform: { _ in
+            Task {
+                let user = await appModel.getCurrentUserData()
+                name = user.username
+                bio = user.biography
+            }
+            Task {
+                let profileSticker = await appModel.getProfileSticker()
+                if profileSticker.image != nil {
+                    imageData = Data(base64Encoded: profileSticker.imageData, options: .ignoreUnknownCharacters)
+                }
+            }
+            Task {
+                let eventSticker = await appModel.getCollectedEvents().asyncCompactMap({ await appModel.getStickerFromEvent($0) })
+                let userSticker = await appModel.getCollectedUsers()
+                images = (eventSticker + userSticker).shuffled().compactMap({ $0.image })
+            }
+            Task {
+                let usersEvents = await appModel.getEvents()
+                self.myEvents = usersEvents
+            }
+        })
         .buttonStyle(.plain)
         .customSheet(isPresented: $addNewEvent) {
             CreateEventCard(showSheet: $addNewEvent)
