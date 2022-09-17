@@ -10,6 +10,8 @@ import SwiftUI
 import CoreImage.CIFilterBuiltins
 
 struct ProfileView: View {
+    @EnvironmentObject private var appModel: AppModel
+
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
     
@@ -66,7 +68,7 @@ struct ProfileView: View {
                     }
                     
                     if showingQRCode {
-                        Image(uiImage: generateQRCode(from: "Hello"))
+                        Image(uiImage: generateQRCode(from: "stickermate://\(appModel.userId)"))
                                 .resizable()
                                 .interpolation(.none)
                                 .frame(width: 180, height: 180)
@@ -143,7 +145,6 @@ struct ProfileView: View {
         filter.message = Data(string.utf8)
         if let outputImage = filter.outputImage {
             if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
-                print("yay")
                 return UIImage(cgImage: cgimg)
             }
         }

@@ -5,6 +5,7 @@
 //  Created by Miká Kruschel on 17.09.22.
 //
 
+import FirebaseFirestore
 import SwiftUI
 
 public extension View {
@@ -41,4 +42,12 @@ extension View {
 
 enum UserDefaultsKey {
     static let userId = "UserId"
+}
+
+infix operator ???
+func ??? (lhs: String?, rhs: String) -> String {
+    if let s = lhs, !s.isEmpty {
+        return s
+    }
+    return rhs
 }

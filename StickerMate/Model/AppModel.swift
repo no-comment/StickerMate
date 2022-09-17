@@ -5,8 +5,8 @@
 //  Created by Miká Kruschel on 17.09.22.
 //
 
-import Foundation
 import CollectionConcurrencyKit
+import Foundation
 
 @MainActor
 class AppModel: ObservableObject {
@@ -25,7 +25,11 @@ class AppModel: ObservableObject {
         return newId
     }
     
-    init() {}
+    init() {
+        Task(priority: .high) {
+            _ = await getCurrentUserData()
+        }
+    }
     
     func getCurrentUserData() async -> User {
         currentUser = await userService.fetchCurrentUser()
@@ -35,6 +39,10 @@ class AppModel: ObservableObject {
             currentUser = user
         }
         return currentUser!
+    }
+    
+    func getScannedUser(_ userId: String) async -> User? {
+        return await userService.fetchUser(id: userId)
     }
     
     func getProfileSticker() async -> Sticker {

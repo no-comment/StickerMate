@@ -14,6 +14,9 @@ struct ContentView: View {
     
     @ObservedObject private var appModel = AppModel()
     
+    @State private var profilePicture: Image?
+    @State private var username = ""
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
@@ -26,10 +29,13 @@ struct ContentView: View {
         }
         .background(backgroundGradient.ignoresSafeArea())
         .pageSheet(isPresented: $showProfile) {
-            ProfileView()
-                .sheetPreferences {
-                    .cornerRadius(40)
-                }
+            NavigationStack {
+                ProfileView()
+            }
+            .sheetPreferences {
+                .cornerRadius(40)
+            }
+            .environmentObject(appModel)
         }
         .customSheet(isPresented: $scanningCode) {
             QrCodeScanner()
@@ -37,6 +43,11 @@ struct ContentView: View {
                 .frame(maxHeight: .infinity, alignment: .bottom)
         }
         .environmentObject(appModel)
+        .task {
+            let user = await appModel.getCurrentUserData()
+            username = user.username
+            profilePicture = await appModel.getProfileSticker().image
+        }
     }
     
     private var profileSection: some View {
@@ -45,14 +56,15 @@ struct ContentView: View {
                 self.showProfile.toggle()
             } label: {
                 HStack {
-                    Image("sticker.example.profile.2")
+                    (profilePicture ?? Image(systemSymbol: .personCircle))
                         .resizable()
                         .frame(width: 40, height: 40)
                         .clipShape(Circle())
-                    Text("John Appleseed")
+                    Text(username ??? "Unknown Name")
                         .font(.headline)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                .redacted(reason: username.isEmpty ? .placeholder : [])
                 .padding()
                 .background {
                     RoundedRectangle(cornerRadius: 20)
