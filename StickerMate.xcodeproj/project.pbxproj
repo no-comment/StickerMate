@@ -14,6 +14,8 @@
 		4594ADB828D52B6200CD2456 /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 4594ADB728D52B6200CD2456 /* SlideOverCard */; };
 		4594ADBB28D5321F00CD2456 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADBA28D5321F00CD2456 /* ProfileCard.swift */; };
 		4594ADBD28D5331100CD2456 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADBC28D5331100CD2456 /* Extensions.swift */; };
+		4594ADC328D53BA400CD2456 /* PageSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 4594ADC228D53BA400CD2456 /* PageSheet */; };
+		4594ADC528D5832700CD2456 /* StickerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADC428D5832700CD2456 /* StickerCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		4594ADAF28D52A3D00CD2456 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4594ADBA28D5321F00CD2456 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		4594ADBC28D5331100CD2456 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4594ADC428D5832700CD2456 /* StickerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +35,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4594ADB828D52B6200CD2456 /* SlideOverCard in Frameworks */,
+				4594ADC328D53BA400CD2456 /* PageSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				4594ADBA28D5321F00CD2456 /* ProfileCard.swift */,
+				4594ADC428D5832700CD2456 /* StickerCard.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 			name = StickerMate;
 			packageProductDependencies = (
 				4594ADB728D52B6200CD2456 /* SlideOverCard */,
+				4594ADC228D53BA400CD2456 /* PageSheet */,
 			);
 			productName = StickerMate;
 			productReference = 4594ADA528D52A3C00CD2456 /* StickerMate.app */;
@@ -132,6 +138,7 @@
 			mainGroup = 4594AD9C28D52A3C00CD2456;
 			packageReferences = (
 				4594ADB628D52B6200CD2456 /* XCRemoteSwiftPackageReference "SlideOverCard" */,
+				4594ADC128D53BA400CD2456 /* XCRemoteSwiftPackageReference "BottomSheetView" */,
 			);
 			productRefGroup = 4594ADA628D52A3C00CD2456 /* Products */;
 			projectDirPath = "";
@@ -163,6 +170,7 @@
 				4594ADA928D52A3C00CD2456 /* StickerMateApp.swift in Sources */,
 				4594ADBB28D5321F00CD2456 /* ProfileCard.swift in Sources */,
 				4594ADBD28D5331100CD2456 /* Extensions.swift in Sources */,
+				4594ADC528D5832700CD2456 /* StickerCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +381,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		4594ADC128D53BA400CD2456 /* XCRemoteSwiftPackageReference "BottomSheetView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ericlewis/BottomSheetView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -380,6 +396,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4594ADB628D52B6200CD2456 /* XCRemoteSwiftPackageReference "SlideOverCard" */;
 			productName = SlideOverCard;
+		};
+		4594ADC228D53BA400CD2456 /* PageSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4594ADC128D53BA400CD2456 /* XCRemoteSwiftPackageReference "BottomSheetView" */;
+			productName = PageSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

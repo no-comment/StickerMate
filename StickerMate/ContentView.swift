@@ -6,17 +6,29 @@
 //
 
 import SwiftUI
+import PageSheet
 
 struct ContentView: View {
+    @State private var shows = false
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
+            Button("Open") { shows.toggle() }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(backgroundGradient.ignoresSafeArea())
+        .pageSheet(isPresented: $shows) {
+            Text("Hello!")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.red)
+                .sheetPreferences {
+                    .cornerRadius(40)
+                }
+        }
     }
 
     private var backgroundGradient: some View {
