@@ -96,7 +96,7 @@ class AppModel: ObservableObject {
     func createEvent(_ event: Event, user: User) throws {
         try eventService.createEvent(event: event)
         guard let ref = eventService.getReference(event) else { return }
-        updateUser(User(id: user.id, username: user.username, biography: user.biography, profileSticker: user.profileSticker, events: user.events, collectedUsers: user.collectedUsers, collectedEvents: user.collectedEvents + [ref]))
+        updateUser(User(id: user.id, username: user.username, biography: user.biography, profileSticker: user.profileSticker, events: user.events + [ref], collectedUsers: user.collectedUsers, collectedEvents: user.collectedEvents))
     }
     
     func createSticker(_ sticker: Sticker) throws {
