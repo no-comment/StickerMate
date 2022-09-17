@@ -13,8 +13,8 @@ struct User: Codable {
     @DocumentID var id: String?
     let username: String
     let biography: String
-    let profileSticker: Sticker
-    let events: [Event]
+    let profileSticker: DocumentReference
+    let events: [DocumentReference]
 }
 
 struct UserService {

@@ -11,7 +11,8 @@ import FirebaseFirestoreSwift
 
 struct Event: Codable {
     @DocumentID var id: String?
-    let sticker: Sticker
+    let sticker: DocumentReference
+    let title: String
     let startDate: Date
     let endDate: Date
 }

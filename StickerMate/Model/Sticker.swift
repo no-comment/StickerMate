@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 struct Sticker: Codable {
     @DocumentID var id: String?
     let imageData: String
-    let creator: String?
+    let creator: DocumentReference
 
     var image: Image? {
         let data = Data(imageData.utf8)
