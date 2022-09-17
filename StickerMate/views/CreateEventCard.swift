@@ -41,11 +41,13 @@ struct CreateEventCard: View {
         VStack(spacing: 15) {
             Text("New Event")
                 .font(.title2.weight(.semibold))
+                .padding(.bottom, 10)
             
             if let imageData, let uiImage = UIImage(data: imageData) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .frame(width: 140, height: 140)
+                    .cornerRadius(20)
                     .glossEffect()
             } else {
                 ImagePicker(data: $imageData) {
@@ -60,18 +62,21 @@ struct CreateEventCard: View {
             }
             
             TextField("Event Title", text: $title)
+                .padding(.top, 25)
             
             Text("During what timeframe do you want the event to run?")
                 .foregroundColor(.secondary)
             
             HStack {
                 DatePicker(selection: $startDate, displayedComponents: .date) { EmptyView() }
+                    .padding(.trailing, 10)
                 
                 Capsule()
                     .frame(width: 18, height: 4)
                     .foregroundColor(.gray)
                 
                 DatePicker(selection: $endDate, displayedComponents: .date) { EmptyView() }
+                    .padding(.trailing, 10)
             }
         }
         .padding(innerPadding)
@@ -105,10 +110,7 @@ struct CreateEventCard: View {
 
 struct CreateEventCard_Previews: PreviewProvider {
     static var previews: some View {
-        Color.red
-            .customSheet(isPresented: .constant(true), content: {
-                CreateEventCard(showSheet: .constant(true))
-                    .padding()
-            })
+        CreateEventCard(showSheet: .constant(true))
+            .padding()
     }
 }
