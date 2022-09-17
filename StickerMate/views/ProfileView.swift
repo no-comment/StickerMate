@@ -36,7 +36,8 @@ struct ProfileView: View {
                 .padding(.bottom)
 
                 Text("Your Favourite Stickers").font(.title3.weight(.semibold))
-                RoundedRectangle(cornerRadius: 15).frame(height: 200)
+                
+                MacView()
 
                 VStack {
                     ForEach(["HackaTum 2021", "HackZurich 2021", "HackZurich 2022"], id: \.self) { name in
