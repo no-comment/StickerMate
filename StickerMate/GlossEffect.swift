@@ -17,7 +17,7 @@ struct GlossEffect: ViewModifier {
                 .overlay {
                     Circle()
                         .fill(
-                            RadialGradient(colors: [.white.opacity(0.5), .clear],
+                            RadialGradient(colors: [.white.opacity(0.15), .clear],
                                            center: .center,
                                            startRadius: 1,
                                            endRadius: size/1.5)
