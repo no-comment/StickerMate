@@ -5,9 +5,9 @@
 //  Created by Miká Kruschel on 17.09.22.
 //
 
+import CoreImage.CIFilterBuiltins
 import SFSafeSymbols
 import SwiftUI
-import CoreImage.CIFilterBuiltins
 
 struct ProfileView: View {
     @EnvironmentObject private var appModel: AppModel
@@ -16,14 +16,12 @@ struct ProfileView: View {
     let filter = CIFilter.qrCodeGenerator()
     
     @State private var imageData: Data? = nil
-    @State private var name = "John Appleseed"
-    @State private var bio = "This short text describes who I am and what I do"
+    @State private var name = ""
+    @State private var bio = ""
     @State private var showingQRCode: Bool = false
     @State private var addNewEvent: Bool = false
     
-    init() {
-        
-    }
+    init() {}
     
     var body: some View {
         ScrollView {
@@ -69,10 +67,10 @@ struct ProfileView: View {
                     
                     if showingQRCode {
                         Image(uiImage: generateQRCode(from: "stickermate://\(appModel.userId)"))
-                                .resizable()
-                                .interpolation(.none)
-                                .frame(width: 180, height: 180)
-                                .transition(.move(edge: .trailing).combined(with: .opacity))
+                            .resizable()
+                            .interpolation(.none)
+                            .frame(width: 180, height: 180)
+                            .transition(.move(edge: .trailing).combined(with: .opacity))
                     }
                 }
                 .padding(.bottom)
@@ -83,6 +81,7 @@ struct ProfileView: View {
                     TextField("Bio", text: $bio, axis: .vertical)
                         .lineLimit(5, reservesSpace: true)
                 }
+                .scrollDismissesKeyboard(.interactively)
                 .textFieldStyle(BorderedTextField()).accentColor(.secondary)
                 .padding(.bottom)
                 
@@ -119,7 +118,6 @@ struct ProfileView: View {
                             .fontWeight(.thin)
                     }
 
-                    
                     ForEach(1 ..< 9) { _ in
                         Button(action: {}) {
                             StickerBadge(image: .init("sticker.example.profile.1"), isEvent: true)
@@ -132,10 +130,41 @@ struct ProfileView: View {
             .padding(.horizontal)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onChange(of: name, perform: { newVal in
+            guard newVal != name else { return }
+            save()
+        })
+        .onChange(of: bio, perform: { newVal in
+            guard newVal != bio else { return }
+            save()
+        })
+        .onChange(of: imageData, perform: { _ in
+            save()
+        })
+        .task {
+            let user = await appModel.getCurrentUserData()
+            name = user.username
+            bio = user.biography
+            let profileSticker = await appModel.getProfileSticker()
+            if profileSticker.image != nil {
+                imageData = Data(base64Encoded: profileSticker.imageData, options: .ignoreUnknownCharacters)
+            }
+        }
         .buttonStyle(.plain)
         .customSheet(isPresented: $addNewEvent) {
             CreateEventCard(showSheet: $addNewEvent)
                 .padding()
+        }
+    }
+    
+    private func save() {
+        Task {
+            let currentUser = await appModel.getCurrentUserData()
+            let updatedUser = User(id: currentUser.id, username: name, biography: bio, profileSticker: currentUser.profileSticker, events: currentUser.events)
+            appModel.updateUser(updatedUser)
+            
+            let currentProfileSticker = await appModel.getProfileSticker()
+            appModel.updateSticker(Sticker(id: currentProfileSticker.id, imageData: imageData?.base64EncodedString() ?? currentProfileSticker.imageData, creator: currentProfileSticker.creator))
         }
     }
     

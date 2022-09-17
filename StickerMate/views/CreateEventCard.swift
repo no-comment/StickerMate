@@ -83,6 +83,7 @@ struct CreateEventCard: View {
         .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity)
         .textFieldStyle(BorderedTextField()).accentColor(.secondary)
+        .scrollDismissesKeyboard(.interactively)
         .background {
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color(uiColor: .systemBackground))

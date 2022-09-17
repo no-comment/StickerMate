@@ -56,4 +56,22 @@ class AppModel: ObservableObject {
         currentUser = await userService.fetchCurrentUser()
         return await currentUser!.events.asyncCompactMap({ await eventService.getEventFromReference($0) })
     }
+    
+    func updateUser(_ user: User) {
+        do {
+            try userService.updateUser(user)
+            currentUser = user
+        } catch {
+            assertionFailure(error.localizedDescription)
+        }
+    }
+    
+    func updateSticker(_ sticker: Sticker) {
+        do {
+            try stickerService.updateSticker(sticker)
+            profileSticker = sticker
+        } catch {
+            assertionFailure(error.localizedDescription)
+        }
+    }
 }

@@ -15,8 +15,8 @@ struct Sticker: Codable {
     let creator: DocumentReference
 
     var image: Image? {
-        let data = Data(imageData.utf8)
-        guard let uiImage = UIImage(data: data) else { return nil }
+        guard let data = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters),
+              let uiImage = UIImage(data: data) else { return nil }
         return Image(uiImage: uiImage)
     }
 }
@@ -28,7 +28,7 @@ struct StickerService {
         // TODO: change document
         store.collection("Stickers").document("78DEKa3xWd10u6HRzeIA")
     }
-    
+
     func fetchStickersFromCreator(_ userId: String) async -> [Sticker]? {
         let query = store.collection("Stickers").whereField("creator", isEqualTo: userId)
         let snapshot = try? await query.getDocuments()
@@ -65,5 +65,11 @@ struct StickerService {
                 }
             }
         }
+    }
+
+    func updateSticker(_ sticker: Sticker) throws {
+        guard let id = sticker.id else { return }
+        try store.collection("Stickers").document(id).setData(from: sticker, merge: true)
+        print("Updated sticker: \(id)")
     }
 }
