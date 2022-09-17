@@ -11,6 +11,11 @@ struct StickerBadge: View {
     let image: Image
     let isEvent: Bool
     
+    init(image: Image, isEvent: Bool) {
+        self.image = image
+        self.isEvent = isEvent
+    }
+    
     var body: some View {
         if isEvent {
             imageView

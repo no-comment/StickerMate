@@ -47,10 +47,8 @@ struct StickerCard: View {
                         .frame(width: creatorSectionHeight, height: creatorSectionHeight)
                         .clipShape(Circle())
                 } else {
-                    Image("sticker.example.profile.2")
-                        .resizable()
+                    Circle()
                         .frame(width: creatorSectionHeight, height: creatorSectionHeight)
-                        .clipShape(Circle())
                 }
                 VStack(alignment: .leading) {
                     Text(creator?.username ?? "Creator").font(.title3.weight(.semibold))

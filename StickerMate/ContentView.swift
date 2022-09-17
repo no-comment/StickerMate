@@ -144,7 +144,7 @@ struct ContentView: View {
                                 self.showingUserSticker = true
                             }
                         }) {
-                            StickerBadge(image: .init("sticker.example.profile.1"), isEvent: false)
+                            StickerBadge(image: sticker.image ?? .init("sticker.example.profile.1"), isEvent: false)
                         }
                     }
                 }
@@ -163,7 +163,7 @@ struct ContentView: View {
                             self.activeEvent = event
                             self.showingEventSticker = true
                         }) {
-                            StickerBadge(image: .init("sticker.example.profile.2"), isEvent: true)
+                            EventBadge(event: event)
                         }
                     }
                 }
