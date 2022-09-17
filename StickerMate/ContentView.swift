@@ -29,6 +29,11 @@ struct ContentView: View {
                     .cornerRadius(40)
                 }
         }
+        .customSheet(isPresented: $scanningCode) {
+            QrCodeScanner()
+                .padding()
+                .frame(maxHeight: .infinity, alignment: .bottom)
+        }
     }
     
     private var profileSection: some View {
@@ -56,7 +61,7 @@ struct ContentView: View {
             Button {
                 self.scanningCode.toggle()
             } label: {
-                Image(systemName: "camera.viewfinder")
+                Image(systemSymbol: .cameraViewfinder)
                     .font(.system(size: 40, weight: .medium))
                     .frame(width: 40, height: 40)
                     .padding()
@@ -66,7 +71,6 @@ struct ContentView: View {
                             .shadow(radius: 2)
                     }
             }
-
         }
         .buttonStyle(.plain)
     }

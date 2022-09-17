@@ -19,6 +19,8 @@
 		4594ADC728D5894E00CD2456 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADC628D5894E00CD2456 /* ProfileView.swift */; };
 		4594ADCA28D593B800CD2456 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 4594ADC928D593B800CD2456 /* SFSafeSymbols */; };
 		4594ADCC28D59AD700CD2456 /* MacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADCB28D59AD700CD2456 /* MacView.swift */; };
+		4594ADCE28D5BA8700CD2456 /* QrCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADCD28D5BA8700CD2456 /* QrCodeScanner.swift */; };
+		4594ADD128D5BBE200CD2456 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 4594ADD028D5BBE200CD2456 /* CodeScanner */; };
 		CBB00D0228D5853F00003553 /* StickerBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D0128D5853F00003553 /* StickerBadge.swift */; };
 		CBB00D0A28D58A9700003553 /* GlossEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D0928D58A9700003553 /* GlossEffect.swift */; };
 		CBB00D0C28D5A57D00003553 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D0B28D5A57D00003553 /* CustomSheet.swift */; };
@@ -35,6 +37,7 @@
 		4594ADC428D5832700CD2456 /* StickerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCard.swift; sourceTree = "<group>"; };
 		4594ADC628D5894E00CD2456 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4594ADCB28D59AD700CD2456 /* MacView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacView.swift; sourceTree = "<group>"; };
+		4594ADCD28D5BA8700CD2456 /* QrCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeScanner.swift; sourceTree = "<group>"; };
 		CBB00D0128D5853F00003553 /* StickerBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerBadge.swift; sourceTree = "<group>"; };
 		CBB00D0928D58A9700003553 /* GlossEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossEffect.swift; sourceTree = "<group>"; };
 		CBB00D0B28D5A57D00003553 /* CustomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheet.swift; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4594ADD128D5BBE200CD2456 /* CodeScanner in Frameworks */,
 				4594ADCA28D593B800CD2456 /* SFSafeSymbols in Frameworks */,
 				4594ADB828D52B6200CD2456 /* SlideOverCard in Frameworks */,
 				4594ADC328D53BA400CD2456 /* PageSheet in Frameworks */,
@@ -101,6 +105,7 @@
 				CBB00D0128D5853F00003553 /* StickerBadge.swift */,
 				4594ADC628D5894E00CD2456 /* ProfileView.swift */,
 				4594ADCB28D59AD700CD2456 /* MacView.swift */,
+				4594ADCD28D5BA8700CD2456 /* QrCodeScanner.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 				4594ADB728D52B6200CD2456 /* SlideOverCard */,
 				4594ADC228D53BA400CD2456 /* PageSheet */,
 				4594ADC928D593B800CD2456 /* SFSafeSymbols */,
+				4594ADD028D5BBE200CD2456 /* CodeScanner */,
 			);
 			productName = StickerMate;
 			productReference = 4594ADA528D52A3C00CD2456 /* StickerMate.app */;
@@ -158,6 +164,7 @@
 				4594ADB628D52B6200CD2456 /* XCRemoteSwiftPackageReference "SlideOverCard" */,
 				4594ADC128D53BA400CD2456 /* XCRemoteSwiftPackageReference "BottomSheetView" */,
 				4594ADC828D593B800CD2456 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
+				4594ADCF28D5BBE200CD2456 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = 4594ADA628D52A3C00CD2456 /* Products */;
 			projectDirPath = "";
@@ -192,6 +199,7 @@
 				4594ADBB28D5321F00CD2456 /* ProfileCard.swift in Sources */,
 				CBB00D0228D5853F00003553 /* StickerBadge.swift in Sources */,
 				4594ADCC28D59AD700CD2456 /* MacView.swift in Sources */,
+				4594ADCE28D5BA8700CD2456 /* QrCodeScanner.swift in Sources */,
 				4594ADBD28D5331100CD2456 /* Extensions.swift in Sources */,
 				4594ADC728D5894E00CD2456 /* ProfileView.swift in Sources */,
 				4594ADC528D5832700CD2456 /* StickerCard.swift in Sources */,
@@ -326,6 +334,7 @@
 				DEVELOPMENT_TEAM = E348R9JYR6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "StickerMate uses your camera to scan other peoples codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -355,6 +364,7 @@
 				DEVELOPMENT_TEAM = E348R9JYR6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "StickerMate uses your camera to scan other peoples codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -421,6 +431,14 @@
 				kind = branch;
 			};
 		};
+		4594ADCF28D5BBE200CD2456 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -438,6 +456,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4594ADC828D593B800CD2456 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
+		};
+		4594ADD028D5BBE200CD2456 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4594ADCF28D5BBE200CD2456 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
