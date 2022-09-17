@@ -12,6 +12,8 @@ struct ContentView: View {
     @State private var showProfile = false
     @State private var scanningCode = false
 
+    @ObservedObject private var appModel = AppModel()
+
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
@@ -22,26 +24,21 @@ struct ContentView: View {
             }
             .padding(.horizontal)
         }
-        .task {
-            print(UserDefaults.standard.string(forKey: UserDefaultsKey.userId))
-            let service = UserService()
-            let user = await service.fetchCurrentUser()
-            print(user)
-        }
         .background(backgroundGradient.ignoresSafeArea())
         .pageSheet(isPresented: $showProfile) {
             NavigationStack {
                 ProfileView()
             }
-                .sheetPreferences {
-                    .cornerRadius(40)
-                }
+            .sheetPreferences {
+                .cornerRadius(40)
+            }
         }
         .customSheet(isPresented: $scanningCode) {
             QrCodeScanner()
                 .padding()
                 .frame(maxHeight: .infinity, alignment: .bottom)
         }
+        .environmentObject(appModel)
     }
 
     private var profileSection: some View {

@@ -24,6 +24,11 @@ struct Sticker: Codable {
 struct StickerService {
     private let store = Firestore.firestore()
 
+    var defaultSticker: DocumentReference {
+        // TODO: change document
+        store.collection("Stickers").document("78DEKa3xWd10u6HRzeIA")
+    }
+    
     func fetchStickersFromCreator(_ userId: String) async -> [Sticker]? {
         let query = store.collection("Stickers").whereField("creator", isEqualTo: userId)
         let snapshot = try? await query.getDocuments()
