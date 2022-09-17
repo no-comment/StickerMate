@@ -60,7 +60,7 @@ struct UserService {
                 case .success(let success):
                     continuation.resume(returning: success)
                 case .failure(let failure):
-                    assertionFailure(failure.localizedDescription)
+                    // assertionFailure(failure.localizedDescription)
                     continuation.resume(returning: nil)
                 }
             }

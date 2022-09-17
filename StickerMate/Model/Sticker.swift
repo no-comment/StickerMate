@@ -25,7 +25,6 @@ struct StickerService {
     private let store = Firestore.firestore()
 
     var defaultSticker: DocumentReference {
-        // TODO: change document
         store.collection("Stickers").document("7HoKy7VY2RdAIolxKyAL")
     }
 
@@ -60,7 +59,7 @@ struct StickerService {
                 case .success(let success):
                     continuation.resume(returning: success)
                 case .failure(let failure):
-                    assertionFailure(failure.localizedDescription)
+                    // assertionFailure(failure.localizedDescription)
                     continuation.resume(returning: nil)
                 }
             }

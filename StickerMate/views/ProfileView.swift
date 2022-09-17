@@ -84,8 +84,9 @@ struct ProfileView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 
                 VStack {
-                    TextField("Name", text: $name)
+                    TextField("Name", text: $name).onSubmit({ save() })
                     TextField("Bio", text: $bio, axis: .vertical)
+                        .onSubmit({ save() })
                         .lineLimit(5, reservesSpace: true)
                 }
                 .scrollDismissesKeyboard(.interactively)
@@ -141,12 +142,6 @@ struct ProfileView: View {
             .padding(.horizontal)
             .navigationBarTitleDisplayMode(.inline)
         }
-        .onChange(of: name, perform: { _ in
-            save()
-        })
-        .onChange(of: bio, perform: { _ in
-            save()
-        })
         .onChange(of: imageData, perform: { _ in
             save()
         })

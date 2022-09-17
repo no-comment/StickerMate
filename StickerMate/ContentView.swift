@@ -129,8 +129,7 @@ struct ContentView: View {
                 stickerImages = (eventSticker + userSticker).shuffled().compactMap({ $0.image })
                 let events = await appModel.getCollectedEvents()
                 self.collectedEvents = events
-                let sticker = await appModel.getCollectedUsers()
-                self.collectedUsers = sticker
+                self.collectedUsers = userSticker
             }
         })
     }
@@ -189,7 +188,7 @@ struct ContentView: View {
                                 self.showingUserSticker = true
                             }
                         }) {
-                            StickerBadge(image: sticker.image ?? .init("sticker.example.profile.1"), isEvent: false)
+                            StickerBadge(image: sticker.image ?? Image(systemSymbol: .personCircle), isEvent: false)
                         }
                     }
                 }
