@@ -28,12 +28,13 @@ struct ContentView: View {
     @State private var showingEventSticker: Bool = false
     @State private var activeEvent: Event? = nil
     
+    @State private var stickerImages: [Image] = []
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
                 profileSection
-                // TODO: add stickers
-                MacView(stickers: [])
+                MacView(stickers: stickerImages)
                 if !(collectedUsers ?? []).isEmpty {
                     collectionSection
                 }
@@ -79,6 +80,11 @@ struct ContentView: View {
             let user = await appModel.getCurrentUserData()
             username = user.username
             profilePicture = await appModel.getProfileSticker().image
+        }
+        .task {
+            let eventSticker = await appModel.getCollectedEvents().asyncCompactMap({ await appModel.getStickerFromEvent($0) })
+            let userSticker = await appModel.getCollectedUsers()
+            stickerImages = (eventSticker + userSticker).shuffled().compactMap({ $0.image })
         }
         .task {
             let events = await appModel.getCollectedEvents()

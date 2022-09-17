@@ -26,7 +26,8 @@ struct ProfileView: View {
     
     @State private var myEvents: [Event]? = nil
     @State private var images: [Image] = []
-    
+    @State private var events: [Event] = []
+
     init() {}
     
     var body: some View {
@@ -91,26 +92,26 @@ struct ProfileView: View {
                 .textFieldStyle(BorderedTextField()).accentColor(.secondary)
                 .padding(.bottom)
                 
-                Text("Your Favourite Stickers").font(.title3.weight(.semibold))
+                Text("Your Collected Stickers").font(.title3.weight(.semibold))
                 
                 MacView(stickers: images)
                     
-                VStack {
-                    ForEach(["HackaTum 2021", "HackZurich 2021", "HackZurich 2022"], id: \.self) { name in
-                        Button(action: {}) {
-                            Text(name)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        .buttonStyle(.bordered)
-                        // .tint(.accentColor)
-                    }
-                    Button(action: {}) {
-                        Text("Add Sticker from Library")
-                        // .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    .buttonStyle(.bordered)
-                    .tint(.accentColor)
-                }
+//                VStack {
+//                    ForEach(["HackaTum 2021", "HackZurich 2021", "HackZurich 2022"], id: \.self) { name in
+//                        Button(action: {}) {
+//                            Text(name)
+//                                .frame(maxWidth: .infinity, alignment: .leading)
+//                        }
+//                        .buttonStyle(.bordered)
+//                        // .tint(.accentColor)
+//                    }
+//                    Button(action: {}) {
+//                        Text("Add Sticker from Library")
+//                        // .frame(maxWidth: .infinity, alignment: .leading)
+//                    }
+//                    .buttonStyle(.bordered)
+//                    .tint(.accentColor)
+//                }
                 
                 Text("Your Events").font(.title3.weight(.semibold))
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 20)], alignment: .center, spacing: 20) {

@@ -20,7 +20,7 @@ struct QrCodeScanner: View {
                 } else {
                     Text("Scan QR Code").font(.title3.weight(.semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    CodeScannerView(codeTypes: [.qr], scanMode: .oncePerCode, showViewfinder: true, simulatedData: "stickermate://B712E2CA-627A-4A97-BD41-552BDDAF60EB", shouldVibrateOnSuccess: true, isTorchOn: false) { response in
+                    CodeScannerView(codeTypes: [.qr], scanMode: .oncePerCode, showViewfinder: true, simulatedData: "stickermate://2FE0188D-540A-487A-8E34-C73E943B6356", shouldVibrateOnSuccess: true, isTorchOn: false) { response in
                         switch response {
                         case .success(let result):
                             print("Found code: \(result.string)")
@@ -32,6 +32,10 @@ struct QrCodeScanner: View {
 
                             Task(priority: .userInitiated) {
                                 scannedUser = await appModel.getScannedUser(userId)
+                                guard let scannedUser else { return }
+                                Task {
+                                    await appModel.collectUserStickers(scannedUser)
+                                }
                             }
                         case .failure(let error):
                             print(error.localizedDescription)

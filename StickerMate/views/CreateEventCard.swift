@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct CreateEventCard: View {
+    @EnvironmentObject private var appModel: AppModel
+
     private let innerPadding: CGFloat = 25
     
     @State private var title: String = ""
     @State private var imageData: Data? = nil
-    @State private var startDate: Date = Date.now
-    @State private var endDate: Date = Date.now
+    @State private var startDate: Date = .now
+    @State private var endDate: Date = .now
     
     @Binding var showSheet: Bool
     
@@ -22,7 +24,18 @@ struct CreateEventCard: View {
             ticket
             
             Button {
-                // TODO: Create new Event
+                guard let imageString = imageData?.base64EncodedString() else { return }
+                Task {
+                    do {
+                        let user = await appModel.getCurrentUserData()
+                        let sticker = Sticker(id: UUID().uuidString, imageData: imageString, creator: UserService().getReference(user)!)
+                        try appModel.createSticker(sticker)
+                        try appModel.createEvent(Event(id: UUID().uuidString, sticker: StickerService().getReference(sticker)!, title: title.trimmingCharacters(in: .whitespaces), startDate: startDate, endDate: endDate))
+                    } catch {
+                        assertionFailure(error.localizedDescription)
+                        self.showSheet = false
+                    }
+                }
                 self.showSheet = false
             } label: {
                 Text("Create Event")
@@ -33,7 +46,7 @@ struct CreateEventCard: View {
                     .cornerRadius(10)
                     .font(.headline)
             }
-
+            .disabled(imageData == nil || title.isEmpty)
         }
     }
     
@@ -101,7 +114,7 @@ struct CreateEventCard: View {
     
     private var maskContent: some View {
         HStack(spacing: 5) {
-            ForEach(0..<28) { _ in
+            ForEach(0 ..< 28) { _ in
                 Circle()
                     .frame(width: 8, height: 8)
             }

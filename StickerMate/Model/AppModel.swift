@@ -92,4 +92,24 @@ class AppModel: ObservableObject {
     func getStickerFromEvent(_ event: Event) async -> Sticker? {
         return await stickerService.getStickerFromReference(event.sticker)
     }
+    
+    func createEvent(_ event: Event) throws {
+        try eventService.createEvent(event: event)
+    }
+    
+    func createSticker(_ sticker: Sticker) throws {
+        try stickerService.createSticker(sticker: sticker)
+    }
+    
+    func collectUserStickers(_ user: User) async {
+        let current = await getCurrentUserData()
+        let userStickerId = user.profileSticker.documentID
+        if !current.collectedUsers.map({ $0.documentID }).contains(userStickerId) {
+            // not already collected
+            let updatedUser = User(id: current.id, username: current.username, biography: current.biography, profileSticker: current.profileSticker, events: current.events, collectedUsers: current.collectedUsers + [user.profileSticker], collectedEvents: current.collectedEvents)
+            updateUser(updatedUser)
+        }
+        
+        
+    }
 }
