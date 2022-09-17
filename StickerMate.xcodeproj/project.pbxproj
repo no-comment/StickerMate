@@ -16,6 +16,7 @@
 		4594ADBD28D5331100CD2456 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADBC28D5331100CD2456 /* Extensions.swift */; };
 		4594ADC328D53BA400CD2456 /* PageSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 4594ADC228D53BA400CD2456 /* PageSheet */; };
 		4594ADC528D5832700CD2456 /* StickerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADC428D5832700CD2456 /* StickerCard.swift */; };
+		4594ADC728D5894E00CD2456 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADC628D5894E00CD2456 /* ProfileView.swift */; };
 		CBB00D0228D5853F00003553 /* StickerBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D0128D5853F00003553 /* StickerBadge.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		4594ADBA28D5321F00CD2456 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		4594ADBC28D5331100CD2456 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4594ADC428D5832700CD2456 /* StickerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCard.swift; sourceTree = "<group>"; };
+		4594ADC628D5894E00CD2456 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		CBB00D0128D5853F00003553 /* StickerBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerBadge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				4594ADBA28D5321F00CD2456 /* ProfileCard.swift */,
 				4594ADC428D5832700CD2456 /* StickerCard.swift */,
 				CBB00D0128D5853F00003553 /* StickerBadge.swift */,
+				4594ADC628D5894E00CD2456 /* ProfileView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				4594ADBB28D5321F00CD2456 /* ProfileCard.swift in Sources */,
 				CBB00D0228D5853F00003553 /* StickerBadge.swift in Sources */,
 				4594ADBD28D5331100CD2456 /* Extensions.swift in Sources */,
+				4594ADC728D5894E00CD2456 /* ProfileView.swift in Sources */,
 				4594ADC528D5832700CD2456 /* StickerCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
