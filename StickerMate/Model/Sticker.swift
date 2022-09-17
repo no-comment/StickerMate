@@ -7,9 +7,10 @@
 
 import FirebaseFirestore
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct Sticker: Codable {
-    let id: String?
+    @DocumentID var id: String?
     let imageData: String
     let creator: String?
 

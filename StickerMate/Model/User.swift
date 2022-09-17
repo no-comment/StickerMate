@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 import Foundation
 
 struct User: Codable {
-    let id: String?
+    @DocumentID var id: String?
     let username: String
     let biography: String
     let profileSticker: Sticker

@@ -7,9 +7,10 @@
 
 import FirebaseFirestore
 import Foundation
+import FirebaseFirestoreSwift
 
 struct Event: Codable {
-    let id: String?
+    @DocumentID var id: String?
     let sticker: Sticker
     let startDate: Date
     let endDate: Date
