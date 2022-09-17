@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EventBadge: View {
+    @ObservedObject private var appModel = AppModel()
+
     private let stickerService = StickerService()
     let event: Event
     @State private var sticker: Sticker? = nil

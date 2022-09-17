@@ -17,7 +17,7 @@ struct ContentView: View {
     @ObservedObject private var appModel = AppModel()
     
     @State private var profilePicture: Image?
-    @State private var username = ""
+    @State private var username: String?
     @State private var events: [Event]?
     
     @State private var collectedUsers: [Sticker]? = nil
@@ -110,7 +110,7 @@ struct ContentView: View {
                         .font(.headline)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .redacted(reason: username.isEmpty ? .placeholder : [])
+                .redacted(reason: username == nil ? .placeholder : [])
                 .padding()
                 .background {
                     RoundedRectangle(cornerRadius: 20)

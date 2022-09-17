@@ -142,12 +142,10 @@ struct ProfileView: View {
             .padding(.horizontal)
             .navigationBarTitleDisplayMode(.inline)
         }
-        .onChange(of: name, perform: { newVal in
-            guard newVal != name else { return }
+        .onChange(of: name, perform: { _ in
             save()
         })
-        .onChange(of: bio, perform: { newVal in
-            guard newVal != bio else { return }
+        .onChange(of: bio, perform: { _ in
             save()
         })
         .onChange(of: imageData, perform: { _ in
