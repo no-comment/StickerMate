@@ -6,13 +6,17 @@
 //
 
 import CollectionConcurrencyKit
+import FirebaseFirestore
 import Foundation
 
 @MainActor
 class AppModel: ObservableObject {
     @Published private var currentUser: User?
     @Published private var profileSticker: Sticker?
-    
+
+    @Published private var collectedUsers: [Sticker]?
+    @Published private var collectedEvents: [Event]?
+
     private let userService = UserService()
     private let stickerService = StickerService()
     private let eventService = EventService()
@@ -73,5 +77,19 @@ class AppModel: ObservableObject {
         } catch {
             assertionFailure(error.localizedDescription)
         }
+    }
+    
+    func getCollectedUsers() async -> [Sticker] {
+        currentUser = await userService.fetchCurrentUser()
+        return await currentUser?.collectedUsers.asyncCompactMap({ await stickerService.getStickerFromReference($0) }) ?? []
+    }
+
+    func getCollectedEvents() async -> [Event] {
+        currentUser = await userService.fetchCurrentUser()
+        return await (currentUser?.collectedEvents.asyncCompactMap({ await eventService.getEventFromReference($0) })) ?? []
+    }
+    
+    func getStickerFromEvent(_ event: Event) async -> Sticker? {
+        return await stickerService.getStickerFromReference(event.sticker)
     }
 }

@@ -89,7 +89,7 @@ struct ProfileView: View {
                 
                 Text("Your Favourite Stickers").font(.title3.weight(.semibold))
                 
-                MacView(stickers: images ?? [])
+                MacView(stickers: images)
                     
                 VStack {
                     ForEach(["HackaTum 2021", "HackZurich 2021", "HackZurich 2022"], id: \.self) { name in
@@ -151,7 +151,9 @@ struct ProfileView: View {
             if profileSticker.image != nil {
                 imageData = Data(base64Encoded: profileSticker.imageData, options: .ignoreUnknownCharacters)
             }
-//            images = user.
+            let eventSticker = await appModel.getCollectedEvents().asyncCompactMap({ await appModel.getStickerFromEvent($0) })
+            let userSticker = await appModel.getCollectedUsers()
+            images = (eventSticker + userSticker).shuffled().compactMap({ $0.image })
         }
         .buttonStyle(.plain)
         .customSheet(isPresented: $addNewEvent) {
