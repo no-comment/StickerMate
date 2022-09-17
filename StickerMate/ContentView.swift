@@ -5,8 +5,8 @@
 //  Created by Miká Kruschel on 17.09.22.
 //
 
-import SwiftUI
 import PageSheet
+import SwiftUI
 
 struct ContentView: View {
     @State private var showProfile = false
@@ -35,7 +35,7 @@ struct ContentView: View {
                 .frame(maxHeight: .infinity, alignment: .bottom)
         }
     }
-    
+
     private var profileSection: some View {
         HStack {
             Button {
@@ -57,7 +57,7 @@ struct ContentView: View {
                         .shadow(radius: 2)
                 }
             }
-            
+
             Button {
                 self.scanningCode.toggle()
             } label: {
@@ -74,7 +74,7 @@ struct ContentView: View {
         }
         .buttonStyle(.plain)
     }
-    
+
     private var collectionSection: some View {
         VStack(alignment: .leading) {
             Text("Collected Stickers").font(.title3.weight(.semibold))
@@ -88,7 +88,7 @@ struct ContentView: View {
             }
         }
     }
-    
+
     private var eventsSection: some View {
         VStack(alignment: .leading) {
             Text("Attended Events").font(.title3.weight(.semibold))

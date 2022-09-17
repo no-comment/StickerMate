@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45417ABA28D5DBBA00922F92 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 45417AB928D5DBBA00922F92 /* FirebaseFirestoreSwift */; };
 		4594ADA928D52A3C00CD2456 /* StickerMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADA828D52A3C00CD2456 /* StickerMateApp.swift */; };
 		4594ADAB28D52A3C00CD2456 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADAA28D52A3C00CD2456 /* ContentView.swift */; };
 		4594ADAD28D52A3D00CD2456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4594ADAC28D52A3D00CD2456 /* Assets.xcassets */; };
@@ -62,17 +63,26 @@
 				4594ADB828D52B6200CD2456 /* SlideOverCard in Frameworks */,
 				4594ADEE28D5D23C00CD2456 /* FirebaseFirestore in Frameworks */,
 				4594ADC328D53BA400CD2456 /* PageSheet in Frameworks */,
+				45417ABA28D5DBBA00922F92 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45417AB828D5DBBA00922F92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4594AD9C28D52A3C00CD2456 = {
 			isa = PBXGroup;
 			children = (
 				4594ADA728D52A3C00CD2456 /* StickerMate */,
 				4594ADA628D52A3C00CD2456 /* Products */,
+				45417AB828D5DBBA00922F92 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,6 +164,7 @@
 				4594ADC928D593B800CD2456 /* SFSafeSymbols */,
 				4594ADD028D5BBE200CD2456 /* CodeScanner */,
 				4594ADED28D5D23C00CD2456 /* FirebaseFirestore */,
+				45417AB928D5DBBA00922F92 /* FirebaseFirestoreSwift */,
 			);
 			productName = StickerMate;
 			productReference = 4594ADA528D52A3C00CD2456 /* StickerMate.app */;
@@ -478,6 +489,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		45417AB928D5DBBA00922F92 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4594ADEC28D5D23C00CD2456 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
 		4594ADB728D52B6200CD2456 /* SlideOverCard */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4594ADB628D52B6200CD2456 /* XCRemoteSwiftPackageReference "SlideOverCard" */;

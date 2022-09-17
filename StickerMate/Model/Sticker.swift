@@ -5,7 +5,7 @@
 //  Created by Cameron Shemilt on 17.09.22.
 //
 
-import Firebase
+import FirebaseFirestore
 import SwiftUI
 
 struct Sticker: Codable {
@@ -23,7 +23,12 @@ struct Sticker: Codable {
 struct StickerService {
     private let store = Firestore.firestore()
 
-    func fetchStickersForUser(user: User) async -> Sticker? {
+    func fetchStickersFromCreator(_ userId: String) async -> [Sticker]? {
+        // FIXME: implement
+        return nil
+    }
+
+    func fetchStickerById(_ userId: String) async -> Sticker? {
         // FIXME: implement
         return nil
     }
