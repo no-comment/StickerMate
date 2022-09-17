@@ -21,6 +21,10 @@ struct ProfileView: View {
     @State private var showingQRCode: Bool = false
     @State private var addNewEvent: Bool = false
     
+    @State private var showEventDetail: Bool = false
+    @State private var selectedEvent: Event? = nil
+    
+    @State private var myEvents: [Event]? = nil
     @State private var images: [Image] = []
     
     init() {}
@@ -109,7 +113,6 @@ struct ProfileView: View {
                 }
                 
                 Text("Your Events").font(.title3.weight(.semibold))
-                
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 20)], alignment: .center, spacing: 20) {
                     Button {
                         self.addNewEvent.toggle()
@@ -120,12 +123,18 @@ struct ProfileView: View {
                             .fontWeight(.thin)
                     }
 
-                    ForEach(1 ..< 9) { _ in
-                        Button(action: {}) {
-                            StickerBadge(image: .init("sticker.example.profile.1"), isEvent: true)
+                    if let myEvents {
+                        ForEach(myEvents, id: \.id) { event in
+                            Button(action: {
+                                self.selectedEvent = event
+                                self.showEventDetail.toggle()
+                            }) {
+                                EventBadge(event: event)
+                            }
                         }
                     }
                 }
+                    
             }
             .padding(.vertical, 34)
             .frame(maxWidth: .infinity)
@@ -154,11 +163,19 @@ struct ProfileView: View {
             let eventSticker = await appModel.getCollectedEvents().asyncCompactMap({ await appModel.getStickerFromEvent($0) })
             let userSticker = await appModel.getCollectedUsers()
             images = (eventSticker + userSticker).shuffled().compactMap({ $0.image })
+            let usersEvents = await appModel.getEvents()
+            self.myEvents = usersEvents
         }
         .buttonStyle(.plain)
         .customSheet(isPresented: $addNewEvent) {
             CreateEventCard(showSheet: $addNewEvent)
                 .padding()
+        }
+        .customSheet(isPresented: $showEventDetail) {
+            if let selectedEvent {
+                StickerCard(event: selectedEvent)
+                    .padding()
+            }
         }
     }
     
