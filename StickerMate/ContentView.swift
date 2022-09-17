@@ -22,6 +22,12 @@ struct ContentView: View {
             }
             .padding(.horizontal)
         }
+        .task {
+            print(UserDefaults.standard.string(forKey: UserDefaultsKey.userId))
+            let service = UserService()
+            let user = await service.fetchCurrentUser()
+            print(user)
+        }
         .background(backgroundGradient.ignoresSafeArea())
         .pageSheet(isPresented: $showProfile) {
             ProfileView()

@@ -21,7 +21,21 @@ struct EventService {
     private let store = Firestore.firestore()
 
     func fetchEventForSticker(_ stickerId: String) async -> Event? {
-        // FIXME: implement
-        return nil
+        let doc = store.collection("Events").document(stickerId)
+        return await referenceToEvent(doc)
+    }
+    
+    func referenceToEvent(_ ref: DocumentReference) async -> Event? {
+        return await withCheckedContinuation { continuation in
+            ref.getDocument(as: Event.self) { result in
+                switch result {
+                case .success(let success):
+                    continuation.resume(returning: success)
+                case .failure(let failure):
+                    assertionFailure(failure.localizedDescription)
+                    continuation.resume(returning: nil)
+                }
+            }
+        }
     }
 }

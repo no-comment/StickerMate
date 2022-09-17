@@ -6,8 +6,8 @@
 //
 
 import FirebaseFirestore
-import SwiftUI
 import FirebaseFirestoreSwift
+import SwiftUI
 
 struct Sticker: Codable {
     @DocumentID var id: String?
@@ -25,12 +25,25 @@ struct StickerService {
     private let store = Firestore.firestore()
 
     func fetchStickersFromCreator(_ userId: String) async -> [Sticker]? {
-        // FIXME: implement
-        return nil
+        let query = store.collection("Stickers").whereField("creator", isEqualTo: userId)
+        let snapshot = try? await query.getDocuments()
+        return snapshot?.documents.compactMap({ snap in
+            try? snap.data(as: Sticker.self)
+        })
     }
 
     func fetchStickerById(_ userId: String) async -> Sticker? {
-        // FIXME: implement
-        return nil
+        let doc = store.collection("Stickers").document(userId)
+        return await withCheckedContinuation { continuation in
+            doc.getDocument(as: Sticker.self) { result in
+                switch result {
+                case .success(let success):
+                    continuation.resume(returning: success)
+                case .failure(let failure):
+                    assertionFailure(failure.localizedDescription)
+                    continuation.resume(returning: nil)
+                }
+            }
+        }
     }
 }
