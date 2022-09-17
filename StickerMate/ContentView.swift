@@ -9,6 +9,8 @@ import PageSheet
 import SwiftUI
 
 struct ContentView: View {
+    private let userService = UserService()
+    
     @State private var showProfile = false
     @State private var scanningCode = false
     
@@ -16,10 +18,14 @@ struct ContentView: View {
     
     @State private var profilePicture: Image?
     @State private var username = ""
+    @State private var events: [Event]?
+    
+    @State private var collectedUsers: [Sticker]? = nil
+    @State private var collectedEvents: [Event]? = nil
     
     @State private var showingUserSticker: Bool = false
     @State private var activeUserSticker: User? = nil
-    @State private var showingEventSticker = false
+    @State private var showingEventSticker: Bool = false
     @State private var activeEvent: Event? = nil
     
     var body: some View {
@@ -28,8 +34,16 @@ struct ContentView: View {
                 profileSection
                 // TODO: add stickers
                 MacView(stickers: [])
-                collectionSection
-                eventsSection
+                if !(collectedUsers ?? []).isEmpty {
+                    collectionSection
+                }
+                if !(collectedEvents ?? []).isEmpty {
+                    eventsSection
+                }
+                if (collectedUsers ?? []).isEmpty && (collectedEvents ?? []).isEmpty {
+                    Text("You don't have any Stickers yet.\nGo out hunting!")
+                        .multilineTextAlignment(.center)
+                }
             }
             .padding(.horizontal)
         }
@@ -113,12 +127,24 @@ struct ContentView: View {
             Text("Collected Stickers").font(.title3.weight(.semibold))
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 20)], alignment: .center, spacing: 20) {
-                ForEach(1 ..< 7) { _ in
-                    Button(action: {}) {
-                        StickerBadge(image: .init("sticker.example.profile.1"), isEvent: false)
+                if let collectedUsers {
+                    ForEach(collectedUsers, id: \.id) { sticker in
+                        Button(action: {
+                            Task {
+                                let userSticker = await userService.getUserFromReference(sticker.creator)
+                                self.activeUserSticker = userSticker
+                                self.showingUserSticker = true
+                            }
+                        }) {
+                            StickerBadge(image: .init("sticker.example.profile.1"), isEvent: false)
+                        }
                     }
                 }
             }
+        }
+        .task {
+            let sticker = await appModel.getCollectedUsers()
+            self.collectedUsers = sticker
         }
     }
     
@@ -127,9 +153,14 @@ struct ContentView: View {
             Text("Attended Events").font(.title3.weight(.semibold))
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 20)], alignment: .center, spacing: 20) {
-                ForEach(1 ..< 7) { _ in
-                    Button(action: {}) {
-                        StickerBadge(image: .init("sticker.example.profile.2"), isEvent: true)
+                if let collectedEvents {
+                    ForEach(collectedEvents, id: \.id) { event in
+                        Button(action: {
+                            self.activeEvent = event
+                            self.showingEventSticker = true
+                        }) {
+                            StickerBadge(image: .init("sticker.example.profile.2"), isEvent: true)
+                        }
                     }
                 }
             }
