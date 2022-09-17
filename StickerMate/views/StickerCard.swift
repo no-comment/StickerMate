@@ -8,30 +8,53 @@
 import SwiftUI
 
 struct StickerCard: View {
-    @ScaledMetric private var creatorSectionHeight: CGFloat = 75
+    @ObservedObject private var appModel = AppModel()
     
+    @ScaledMetric private var creatorSectionHeight: CGFloat = 75
     private let innerPadding: CGFloat = 25
+    private let userService = UserService()
+    private let stickerService = StickerService()
+    
+    let event: Event
+    @State private var sticker: Sticker? = nil
+    @State private var title: String? = nil
+    @State private var creator: User? = nil
+    @State private var userSticker: Sticker? = nil
 
     var body: some View {
         VStack(spacing: 15) {
-            StickerBadge(image: Image("sticker.example.event.1"), isEvent: true)
-                .frame(width: 140, height: 140)
-                .glossEffect()
-                .padding(.top, 34)
-            Text("Hack Zurich 2022").font(.title2.weight(.semibold))
+            if let image = sticker?.image {
+                StickerBadge(image: image, isEvent: true)
+                    .frame(width: 140, height: 140)
+                    .glossEffect()
+                    .padding(.top, 34)
+            } else {
+                RoundedRectangle(cornerRadius: 20)
+                    .frame(width: 140, height: 140)
+                    .padding(.top, 34)
+            }
+            Text(title ?? "Event").font(.title2.weight(.semibold))
             Text("This short text describes the Event and what happened")
                 .foregroundColor(.secondary)
 
-            Spacer().frame(height: 100)
-
+            Spacer()
+                .frame(height: 100)
+            
             HStack {
-                Image("sticker.example.profile.2")
-                    .resizable()
-                    .frame(width: creatorSectionHeight, height: creatorSectionHeight)
-                    .clipShape(Circle())
+                if let profilePic = userSticker?.image {
+                    profilePic
+                        .resizable()
+                        .frame(width: creatorSectionHeight, height: creatorSectionHeight)
+                        .clipShape(Circle())
+                } else {
+                    Image("sticker.example.profile.2")
+                        .resizable()
+                        .frame(width: creatorSectionHeight, height: creatorSectionHeight)
+                        .clipShape(Circle())
+                }
                 VStack(alignment: .leading) {
-                    Text("John Appleseed").font(.title3.weight(.semibold))
-                    Text("This short text describes who I am and what I do")
+                    Text(creator?.username ?? "Creator").font(.title3.weight(.semibold))
+                    Text(creator?.biography ?? "The creator of this event.")
                         .lineLimit(3)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
@@ -56,13 +79,22 @@ struct StickerCard: View {
                 }
                 .shadow(radius: 7)
         }
+        .task {
+            guard let sticker = await  stickerService.getStickerFromReference(event.sticker) else { return }
+            self.sticker = sticker
+            guard let user = await userService.getUserFromReference(sticker.creator) else { return }
+            self.creator = user
+            let profile = await stickerService.getStickerFromReference(user.profileSticker)
+            self.userSticker = profile
+        }
     }
 }
 
 struct StickerCard_Previews: PreviewProvider {
     static var previews: some View {
-        StickerCard().padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(uiColor: .systemGroupedBackground))
+//        StickerCard().padding()
+//            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//            .background(Color(uiColor: .systemGroupedBackground))
+        Text("N/A")
     }
 }

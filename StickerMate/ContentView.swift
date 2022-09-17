@@ -17,6 +17,11 @@ struct ContentView: View {
     @State private var profilePicture: Image?
     @State private var username = ""
     
+    @State private var showingUserSticker: Bool = false
+    @State private var activeUserSticker: User? = nil
+    @State private var showingEventSticker = false
+    @State private var activeEvent: Event? = nil
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
@@ -42,6 +47,18 @@ struct ContentView: View {
                 .padding()
                 .frame(maxHeight: .infinity, alignment: .bottom)
         }
+        .customSheet(isPresented: $showingUserSticker, content: {
+            if let activeUserSticker {
+                ProfileCard(user: activeUserSticker)
+                    .padding()
+            }
+        })
+        .customSheet(isPresented: $showingEventSticker, content: {
+            if let activeEvent {
+                StickerCard(event: activeEvent)
+                    .padding()
+            }
+        })
         .environmentObject(appModel)
         .task {
             let user = await appModel.getCurrentUserData()
