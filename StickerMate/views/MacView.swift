@@ -8,7 +8,53 @@
 import SwiftUI
 
 struct MacView: View {
+    private let size: [CGFloat] = [
+        45,
+        40,
+        55,
+        35,
+        40,
+    ]
+    private let offset: [CGSize] = [
+        CGSize(width: -110, height: -110),
+        CGSize(width: 130, height: 70),
+        CGSize(width: 90, height: -75),
+        CGSize(width: 10, height: -65),
+        CGSize(width: -90, height: 55),
+    ]
+    private let rotation: [Double] = [
+        -15,
+        6,
+         12,
+         -4,
+         -10,
+    ]
+    
+    let stickers: [Image]
+    
+    init(_ stickers: [Image] = []) {
+        self.stickers = stickers
+    }
+    
     var body: some View {
+        macBook
+            .overlay {
+                ZStack {
+                    ForEach(0..<5) { i in
+                        if let sticker = stickers[safe: i] {
+                            sticker
+                                .resizable()
+                                .frame(width: size[safe: i] ?? 40, height: size[safe: i] ?? 40)
+                                .cornerRadius(8)
+                                .offset(x: offset[safe: i]?.width ?? 40 , y: offset[safe: i]?.height ?? 40)
+                                .rotationEffect(.degrees(rotation[safe: i] ?? 0))
+                        }
+                    }
+                }
+            }
+    }
+    
+    private var macBook: some View {
         GeometryReader { geo in
             RoundedRectangle(cornerRadius: scaleValue(16, geo: geo))
                 .fill(LinearGradient(colors: [Color(#colorLiteral(red: 0.9149723649, green: 0.9299026728, blue: 0.9296407104, alpha: 1)), Color(#colorLiteral(red: 0.5924945474, green: 0.5924944878, blue: 0.5924944282, alpha: 1))], startPoint: .top, endPoint: .bottom))
@@ -32,10 +78,13 @@ struct MacView: View {
 
 struct MacView_Previews: PreviewProvider {
     static var previews: some View {
-        MacView()
-//            .scaleEffect(0.4)
-//            .border(.red)
-//            .frame(width: 100)
+        MacView([
+            Image("sticker.example.event.1"),
+            Image("sticker.example.profile.2"),
+            Image("sticker.example.profile.1"),
+            Image("sticker.example.profile.2"),
+            Image("sticker.example.event.1"),
+        ])
             .padding()
     }
 }
