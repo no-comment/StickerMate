@@ -11,7 +11,7 @@ import SwiftUI
 struct ProfileView: View {
     @State private var name = "John Appleseed"
     @State private var bio = "This short text describes who I am and what I do"
-
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 15) {
@@ -26,7 +26,7 @@ struct ProfileView: View {
                 }
                 .padding(.bottom)
                 .frame(maxWidth: .infinity, alignment: .center)
-
+                
                 VStack {
                     TextField("Name", text: $name)
                     TextField("Bio", text: $bio, axis: .vertical)
@@ -34,11 +34,11 @@ struct ProfileView: View {
                 }
                 .textFieldStyle(BorderedTextField()).accentColor(.secondary)
                 .padding(.bottom)
-
+                
                 Text("Your Favourite Stickers").font(.title3.weight(.semibold))
                 
                 MacView()
-
+                
                 VStack {
                     ForEach(["HackaTum 2021", "HackZurich 2021", "HackZurich 2022"], id: \.self) { name in
                         Button(action: {}) {
@@ -55,17 +55,21 @@ struct ProfileView: View {
                     .buttonStyle(.bordered)
                     .tint(.accentColor)
                 }
-
+                
                 Text("Your Events").font(.title3.weight(.semibold))
-
+                
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 20)], alignment: .center, spacing: 20) {
-                    Button(action: {}) {
+                    NavigationLink {
+                        CreateEventCard()
+                            .padding()
+                    } label: {
                         Image(systemSymbol: .plusSquareDashed)
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .fontWeight(.thin)
+                        
                     }
-
+                    
                     ForEach(1 ..< 9) { _ in
                         Button(action: {}) {
                             StickerBadge(image: .init("sticker.example.profile.1"), isEvent: true)
@@ -91,6 +95,8 @@ struct BorderedTextField: TextFieldStyle {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView().border(.red)
+        NavigationStack {
+            ProfileView().border(.red)
+        }
     }
 }
