@@ -82,23 +82,23 @@ extension View {
     }
 }
 
-private struct Preview: View {
-    @State private var shows = false
-    var body: some View {
-        Button("Show") {
-            withAnimation {
-                shows.toggle()
-            }
-        }
-        .customSheet(isPresented: $shows) {
-            StickerCard()
-                .padding()
-        }
-    }
-}
+//private struct Preview: View {
+//    @State private var shows = false
+//    var body: some View {
+//        Button("Show") {
+//            withAnimation {
+//                shows.toggle()
+//            }
+//        }
+//        .customSheet(isPresented: $shows) {
+//            StickerCard(event: <#Event#>)
+//                .padding()
+//        }
+//    }
+//}
 
-struct CustomSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        Preview()
-    }
-}
+//struct CustomSheet_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Preview()
+//    }
+//}

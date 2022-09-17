@@ -21,6 +21,8 @@ struct ProfileView: View {
     @State private var showingQRCode: Bool = false
     @State private var addNewEvent: Bool = false
     
+    @State private var images: [Image] = []
+    
     init() {}
     
     var body: some View {
@@ -87,8 +89,8 @@ struct ProfileView: View {
                 
                 Text("Your Favourite Stickers").font(.title3.weight(.semibold))
                 
-                MacView()
-                
+                MacView(stickers: images ?? [])
+                    
                 VStack {
                     ForEach(["HackaTum 2021", "HackZurich 2021", "HackZurich 2022"], id: \.self) { name in
                         Button(action: {}) {
@@ -149,6 +151,7 @@ struct ProfileView: View {
             if profileSticker.image != nil {
                 imageData = Data(base64Encoded: profileSticker.imageData, options: .ignoreUnknownCharacters)
             }
+//            images = user.
         }
         .buttonStyle(.plain)
         .customSheet(isPresented: $addNewEvent) {
@@ -160,7 +163,7 @@ struct ProfileView: View {
     private func save() {
         Task {
             let currentUser = await appModel.getCurrentUserData()
-            let updatedUser = User(id: currentUser.id, username: name, biography: bio, profileSticker: currentUser.profileSticker, events: currentUser.events)
+            let updatedUser = User(id: currentUser.id, username: name, biography: bio, profileSticker: currentUser.profileSticker, events: currentUser.events, collectedUsers: currentUser.collectedUsers, collectedEvents: currentUser.collectedEvents)
             appModel.updateUser(updatedUser)
             
             let currentProfileSticker = await appModel.getProfileSticker()

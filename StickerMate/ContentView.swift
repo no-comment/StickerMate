@@ -26,7 +26,8 @@ struct ContentView: View {
         ScrollView {
             VStack(spacing: 30) {
                 profileSection
-                MacView()
+                // TODO: add stickers
+                MacView(stickers: [])
                 collectionSection
                 eventsSection
             }

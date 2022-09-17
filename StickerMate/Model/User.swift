@@ -15,6 +15,8 @@ struct User: Codable {
     let biography: String
     let profileSticker: DocumentReference
     let events: [DocumentReference]
+    let collectedUsers: [DocumentReference]
+    let collectedEvents: [DocumentReference]
 }
 
 struct UserService {

@@ -46,11 +46,7 @@ struct MacView: View {
     ]
     
     let stickers: [Image]
-    
-    init(_ stickers: [Image] = []) {
-        self.stickers = stickers
-    }
-    
+        
     var body: some View {
         macBook
             .overlay {
@@ -93,7 +89,7 @@ struct MacView: View {
 
 struct MacView_Previews: PreviewProvider {
     static var previews: some View {
-        MacView([
+        MacView(stickers: [
             Image("sticker.example.event.1"),
             Image("sticker.example.event.2"),
             Image("sticker.example.event.3"),

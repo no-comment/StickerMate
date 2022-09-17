@@ -34,7 +34,7 @@ class AppModel: ObservableObject {
     func getCurrentUserData() async -> User {
         currentUser = await userService.fetchCurrentUser()
         if currentUser == nil {
-            let user = User(id: userId, username: "", biography: "", profileSticker: stickerService.defaultSticker, events: [])
+            let user = User(id: userId, username: "", biography: "", profileSticker: stickerService.defaultSticker, events: [], collectedUsers: [], collectedEvents: [])
             try! userService.createUser(user: user)
             currentUser = user
         }

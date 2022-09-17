@@ -26,7 +26,8 @@ struct ProfileCard: View {
                     .foregroundColor(.secondary)
             }
             Spacer().frame(height: 15)
-            MacView()
+            // TODO: add stickers
+            MacView(stickers: [])
         }
         .padding(innerPadding)
         .multilineTextAlignment(.center)

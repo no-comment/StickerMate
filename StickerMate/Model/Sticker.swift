@@ -26,7 +26,7 @@ struct StickerService {
 
     var defaultSticker: DocumentReference {
         // TODO: change document
-        store.collection("Stickers").document("78DEKa3xWd10u6HRzeIA")
+        store.collection("Stickers").document("7HoKy7VY2RdAIolxKyAL")
     }
 
     func fetchStickersFromCreator(_ userId: String) async -> [Sticker]? {
