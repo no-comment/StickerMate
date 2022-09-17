@@ -80,6 +80,14 @@ struct ContentView: View {
             username = user.username
             profilePicture = await appModel.getProfileSticker().image
         }
+        .task {
+            let events = await appModel.getCollectedEvents()
+            self.collectedEvents = events
+        }
+        .task {
+            let sticker = await appModel.getCollectedUsers()
+            self.collectedUsers = sticker
+        }
     }
     
     private var profileSection: some View {
@@ -141,10 +149,6 @@ struct ContentView: View {
                     }
                 }
             }
-        }
-        .task {
-            let sticker = await appModel.getCollectedUsers()
-            self.collectedUsers = sticker
         }
     }
     
