@@ -38,3 +38,7 @@ extension View {
             )
     }
 }
+
+enum UserDefaultsKey {
+    static let userId = "UserId"
+}
