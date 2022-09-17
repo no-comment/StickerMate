@@ -24,6 +24,9 @@
 		CBB00D0228D5853F00003553 /* StickerBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D0128D5853F00003553 /* StickerBadge.swift */; };
 		CBB00D0A28D58A9700003553 /* GlossEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D0928D58A9700003553 /* GlossEffect.swift */; };
 		CBB00D0C28D5A57D00003553 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D0B28D5A57D00003553 /* CustomSheet.swift */; };
+		CBB00D1128D5D12E00003553 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D1028D5D12E00003553 /* User.swift */; };
+		CBB00D1328D5D1D300003553 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D1228D5D1D300003553 /* Sticker.swift */; };
+		CBB00D1528D5D1DA00003553 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D1428D5D1DA00003553 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +44,9 @@
 		CBB00D0128D5853F00003553 /* StickerBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerBadge.swift; sourceTree = "<group>"; };
 		CBB00D0928D58A9700003553 /* GlossEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossEffect.swift; sourceTree = "<group>"; };
 		CBB00D0B28D5A57D00003553 /* CustomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheet.swift; sourceTree = "<group>"; };
+		CBB00D1028D5D12E00003553 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CBB00D1228D5D1D300003553 /* Sticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
+		CBB00D1428D5D1DA00003553 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,7 @@
 		4594ADA728D52A3C00CD2456 /* StickerMate */ = {
 			isa = PBXGroup;
 			children = (
+				CBB00D0F28D5D10900003553 /* Model */,
 				4594ADB928D531EA00CD2456 /* views */,
 				4594ADA828D52A3C00CD2456 /* StickerMateApp.swift */,
 				4594ADAA28D52A3C00CD2456 /* ContentView.swift */,
@@ -108,6 +115,16 @@
 				4594ADCD28D5BA8700CD2456 /* QrCodeScanner.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		CBB00D0F28D5D10900003553 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBB00D1028D5D12E00003553 /* User.swift */,
+				CBB00D1228D5D1D300003553 /* Sticker.swift */,
+				CBB00D1428D5D1DA00003553 /* Event.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,11 +214,14 @@
 				CBB00D0C28D5A57D00003553 /* CustomSheet.swift in Sources */,
 				4594ADA928D52A3C00CD2456 /* StickerMateApp.swift in Sources */,
 				4594ADBB28D5321F00CD2456 /* ProfileCard.swift in Sources */,
+				CBB00D1328D5D1D300003553 /* Sticker.swift in Sources */,
 				CBB00D0228D5853F00003553 /* StickerBadge.swift in Sources */,
 				4594ADCC28D59AD700CD2456 /* MacView.swift in Sources */,
 				4594ADCE28D5BA8700CD2456 /* QrCodeScanner.swift in Sources */,
+				CBB00D1128D5D12E00003553 /* User.swift in Sources */,
 				4594ADBD28D5331100CD2456 /* Extensions.swift in Sources */,
 				4594ADC728D5894E00CD2456 /* ProfileView.swift in Sources */,
+				CBB00D1528D5D1DA00003553 /* Event.swift in Sources */,
 				4594ADC528D5832700CD2456 /* StickerCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
