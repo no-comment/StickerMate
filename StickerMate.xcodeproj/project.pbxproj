@@ -17,6 +17,7 @@
 		4594ADC328D53BA400CD2456 /* PageSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 4594ADC228D53BA400CD2456 /* PageSheet */; };
 		4594ADC528D5832700CD2456 /* StickerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADC428D5832700CD2456 /* StickerCard.swift */; };
 		4594ADC728D5894E00CD2456 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594ADC628D5894E00CD2456 /* ProfileView.swift */; };
+		4594ADCA28D593B800CD2456 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 4594ADC928D593B800CD2456 /* SFSafeSymbols */; };
 		CBB00D0228D5853F00003553 /* StickerBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB00D0128D5853F00003553 /* StickerBadge.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4594ADCA28D593B800CD2456 /* SFSafeSymbols in Frameworks */,
 				4594ADB828D52B6200CD2456 /* SlideOverCard in Frameworks */,
 				4594ADC328D53BA400CD2456 /* PageSheet in Frameworks */,
 			);
@@ -113,6 +115,7 @@
 			packageProductDependencies = (
 				4594ADB728D52B6200CD2456 /* SlideOverCard */,
 				4594ADC228D53BA400CD2456 /* PageSheet */,
+				4594ADC928D593B800CD2456 /* SFSafeSymbols */,
 			);
 			productName = StickerMate;
 			productReference = 4594ADA528D52A3C00CD2456 /* StickerMate.app */;
@@ -145,6 +148,7 @@
 			packageReferences = (
 				4594ADB628D52B6200CD2456 /* XCRemoteSwiftPackageReference "SlideOverCard" */,
 				4594ADC128D53BA400CD2456 /* XCRemoteSwiftPackageReference "BottomSheetView" */,
+				4594ADC828D593B800CD2456 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 			);
 			productRefGroup = 4594ADA628D52A3C00CD2456 /* Products */;
 			projectDirPath = "";
@@ -397,6 +401,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		4594ADC828D593B800CD2456 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols";
+			requirement = {
+				branch = stable;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -409,6 +421,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4594ADC128D53BA400CD2456 /* XCRemoteSwiftPackageReference "BottomSheetView" */;
 			productName = PageSheet;
+		};
+		4594ADC928D593B800CD2456 /* SFSafeSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4594ADC828D593B800CD2456 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			productName = SFSafeSymbols;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

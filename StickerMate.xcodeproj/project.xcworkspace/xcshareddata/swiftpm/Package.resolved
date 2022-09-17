@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "sfsafesymbols",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SFSafeSymbols/SFSafeSymbols",
+      "state" : {
+        "branch" : "stable",
+        "revision" : "50bc33264e6c0972f905b61af656201cf6091de8"
+      }
+    },
+    {
       "identity" : "slideovercard",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/joogps/SlideOverCard",

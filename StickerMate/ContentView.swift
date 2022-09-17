@@ -22,9 +22,7 @@ struct ContentView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(backgroundGradient.ignoresSafeArea())
         .pageSheet(isPresented: $shows) {
-            Text("Hello!")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.red)
+            ProfileView()
                 .sheetPreferences {
                     .cornerRadius(40)
                 }
