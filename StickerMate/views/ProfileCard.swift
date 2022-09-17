@@ -30,6 +30,7 @@ struct ProfileCard: View {
                 }
                 .shadow(radius: 7)
         }
+        .shee
     }
 }
 
