@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileCard: View {
+    private let innerPadding: CGFloat = 25
+
     var body: some View {
         VStack(spacing: 15) {
             Circle().frame(width: 140, height: 140)
@@ -18,7 +20,7 @@ struct ProfileCard: View {
             Spacer().frame(height: 15)
             RoundedRectangle(cornerRadius: 15).frame(height: 200)
         }
-        .padding(34)
+        .padding(innerPadding)
         .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity)
         .background {
@@ -35,6 +37,7 @@ struct ProfileCard_Previews: PreviewProvider {
     static var previews: some View {
         ProfileCard()
             .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(uiColor: .systemGroupedBackground))
     }
 }
