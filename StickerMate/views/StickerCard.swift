@@ -51,7 +51,8 @@ struct StickerCard: View {
                 VStack(alignment: .leading) {
                     Text(creator?.username ?? "Creator").font(.title3.weight(.semibold))
                     Text(creator?.biography ?? "The creator of this event.")
-                        .lineLimit(3)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.8)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                 }
