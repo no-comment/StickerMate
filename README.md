@@ -1,5 +1,6 @@
 # StickerMates
 A small App developed during the hackerthon [hackZurich](https://hackzurich.com) in 2022.
+Check it out on [Creator Space](https://app.creatorspace.dev/shemilt/projects/IBXE2e6tzw1D3ol0).
 
 ## Short Description
 StickerMates is an app that makes meeting new people fun and turns connecting with others into a game. It allows you to collect digital stickers of fellow hackers, colleagues and peers. You can additionally collect event stickers that are available for a limited time. All of these can be stuck on the back of your digital laptop that is on display in your profile for others to admire.
