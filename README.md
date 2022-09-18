@@ -6,3 +6,6 @@ StickerMates is an app that makes meeting new people fun and turns connecting wi
 
 ## Why?
 Be it hackathons, conferences or other events, you always meet new interesting people. It's always the case that stickers are handed out by companies at these kinds of events: So we thought, why not let people trade theirs too? Since not everyone can or is willing to produce them upfront we set out to digitize this experience. From collecting them to also being able to stick them to the back of your laptop, we tried to recreate the experience digitally to the most minute detail.
+
+# How to run it?
+To run StickerMates you need Xcode 14 or higher, a Firebase Firestore project and you have to add the Firebase configuration file to the project.
